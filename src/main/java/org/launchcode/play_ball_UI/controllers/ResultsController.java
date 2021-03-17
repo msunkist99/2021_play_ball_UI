@@ -22,7 +22,8 @@ public class ResultsController {
 
     @GetMapping(value="/player")
     public String getPlayer(Model model){
-        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, null, null, null, "mcgew001");
+//        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, null, null, null, "mcgew001");
+        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, null, null, null, "vuckp001");
 
         for (GamePlayer gamePlayer : gamesPlayer) {
             gamePlayer.getGameId();
@@ -37,8 +38,9 @@ public class ResultsController {
 
     @GetMapping(value="/game")
     public String getGame(Model model){
-        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, "SLN198210200", null, null, null);
-
+//        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, "SLN198210200", null, null, null);
+//        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(2015, "SLN201505020", null, null, null);
+        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, "CAL198210060", null, null, null);
         for (GamePlayer gamePlayer : gamesPlayer) {
             gamePlayer.getGameId();
         }

@@ -75,18 +75,18 @@ public class GamePlayerDataAccessObject {
             gamePlayer.setPlayerBatsText(lookupData.get("left_right" + row[17].toString()));
 
             gamePlayer.setPlayerThrows((Character) row[18]);
-            gamePlayer.setPlayerThrowsText(lookupData.get(row[18].toString()));
+            gamePlayer.setPlayerThrowsText(lookupData.get("left_right" + row[18].toString()));
 
             gamePlayer.setPlayerStartSub((Integer) row[19]);
-            gamePlayer.setPlayerStartSubText(lookupData.get(row[19].toString()));
+            gamePlayer.setPlayerStartSubText(lookupData.get("start_sub" + row[19].toString()));
 
             gamePlayer.setPlayerVisitHome((Integer) row[20]);
-            gamePlayer.setPlayerVisitHomeText(lookupData.get(row[20].toString()));
+            gamePlayer.setPlayerVisitHomeText(lookupData.get("visit_home" + row[20].toString()));
 
             gamePlayer.setPlayerBattingOrder((Integer) row[21]);
 
             gamePlayer.setPlayerFieldPosition((Integer) row[22]);
-            gamePlayer.setPlayerFieldPositionText(lookupData.get(row[22].toString()));
+            gamePlayer.setPlayerFieldPositionText(lookupData.get("field_position" + row[22].toString()));
 
             gamesPlayers.add(gamePlayer);
         }

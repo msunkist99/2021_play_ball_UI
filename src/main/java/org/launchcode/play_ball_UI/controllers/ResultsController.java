@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping(value= "/playball")
+@RequestMapping(value= "/playball/results")
 public class ResultsController {
 
     @Autowired
     GamePlayerDataAccessObject dao;
 
-//    @Autowired
-//    GamePlayerRepository gamePlayerRepository;
 
     @GetMapping(value="/player")
     public String getPlayer(Model model){

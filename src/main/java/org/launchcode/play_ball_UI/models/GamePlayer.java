@@ -56,8 +56,6 @@ public class GamePlayer {
     private int playerFieldPosition;
     private String playerFieldPositionText;
 
-    // The protected keyword is an access modifier used for attributes, methods and constructors,
-    // making them accessible in the same package and subclasses.
     // no argument constructor, required for Hibernate to create an object.
     public GamePlayer(){ }
 

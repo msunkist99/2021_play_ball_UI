@@ -18,14 +18,14 @@ public class YearDataAccessObject {
 
     public Iterable<Year> getYearsData() {
 
-        List<Object[]> objectList = entityManager.createNamedStoredProcedureQuery("get-year-data")
+        List<Integer> objectList = entityManager.createNamedStoredProcedureQuery("get-year-data")
                 .getResultList();
 
         List<Year> years = new ArrayList<>();
 
-        for (Object[] row : objectList) {
+        for (Integer row : objectList) {
             Year year = new Year();
-            year.setGameYear((Integer) row[0]);
+            year.setGameYear(row);
             years.add(year);
         }
 

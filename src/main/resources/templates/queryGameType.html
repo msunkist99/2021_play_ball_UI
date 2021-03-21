@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+
+
+<body>
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <form method="get" action="queryGames" style="max-width:600px;">
+
+        <div class="form-group">
+            <input type="hidden" th:value="${year}" name="year">
+            <label  th:text="'Season - ' +  ${year}"></label>
+        </div>
+
+        <div class="form-group">
+            <label th:for="gameType">Game Type</label>
+            <select id="gameType" name="gameType" >
+                <option th:each="gameType : ${gameTypes}"
+                        th:text="${#strings.capitalizeWords(gameType.gameTypeText)}"
+                        th:value="${gameType.gameType}"></option>
+            </select>
+        </div>
+
+        <input type="submit" value="Run Query" />
+    </form>
+
+</div>
+
+</body>
+</html>

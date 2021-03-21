@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+
+
+<body>
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <form method="get" action="gamePlayer" style="max-width:600px;">
+
+        <div class="form-group">
+            <input type="hidden" th:value="${year}" name="year">
+            <label  th:text="'Season - ' +  ${year}"></label>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" th:value="${gameType}" >
+            <label  th:text="'Game Type - ' +  ${#strings.capitalizeWords(gameTypeText)}"></label>
+        </div>
+
+        <div class="form-group">
+            <label th:for="games">Games</label>
+            <select id="gameId" name="gameId" >
+                <option th:each="game : ${games}"
+                        th:text="${game.date} + ' - ' + ${game.homeTeamName} + ' vs ' + ${game.visitingTeamName} + ' @ ' + ${game.homeTeamCity}"
+                        th:value="${game.gameId}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label th:for="games">Players</label>
+            <select id="playerId" name="playerId"  >
+                <option th:each="player : ${players}"
+                        th:text="${player.playerLastName} + ', ' + ${player.playerFirstName} + ' - ' + ${player.playerTeamCity} + ' ' + ${player.playerTeamName}"
+                        th:value="${player.playerId}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="optionGame" name="option" class="custom-control-input" value="game" >
+                <label class="custom-control-label" for="optionGame">Find Game</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="optionPlayer" name="option" class="custom-control-input" value="player" >
+                <label class="custom-control-label" for="optionPlayer">Find Player</label>
+            </div>
+        </div>
+
+        <input type="submit" value="Run Query" />
+    </form>
+
+</div>
+
+</body>
+</html>

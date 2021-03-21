@@ -13,7 +13,7 @@
 
     <div class="row no-gutters">
         <div class="col-md-2 leftSide no-gutters">
-            <table class="centeredTable">
+            <table class="centeredTable table-condensed">
                 <tr>
                     <td th:text="${gamesPlayer[0].gameId}"></td>
                 </tr>
@@ -33,13 +33,10 @@
                     <td th:text="${gamesPlayer[0].dayNightText + ' game'}"></td>
                 </tr>
                 <tr>
-                    <td>Visiting Team</td>
+                    <td><strong>Visiting Team</strong></td>
                 </tr>
                 <tr>
-                    <td th:text="${gamesPlayer[0].visitingTeamName}"></td>
-                </tr>
-                <tr>
-                    <td th:text="${gamesPlayer[0].visitingTeamCity}"></td>
+                    <td th:text="${gamesPlayer[0].visitingTeamCity} + ' ' +${gamesPlayer[0].visitingTeamName}"></td>
                 </tr>
                 <tr>
                     <td th:text="${gamesPlayer[0].visitingTeamLeagueText} + ' League'"></td>
@@ -48,13 +45,10 @@
                 <tr> </tr>
                 <tr></tr>
                 <tr>
-                    <td>Home Team</td>
+                    <td><strong>Home Team</strong></td>
                 </tr>
                 <tr>
-                    <td th:text="${gamesPlayer[0].homeTeamName}"></td>
-                </tr>
-                <tr>
-                    <td th:text="${gamesPlayer[0].homeTeamCity}"></td>
+                    <td th:text="${gamesPlayer[0].homeTeamCity} + ' ' + ${gamesPlayer[0].homeTeamName}"></td>
                 </tr>
                 <tr>
                     <td th:text="${gamesPlayer[0].homeTeamLeagueText} + ' League'"></td>
@@ -63,15 +57,14 @@
         </div>
 
         <div class="col-md-2 rightSide no-gutters">
-            <table class="centeredTable ">
+            <table class="centeredTable table-condensed">
                 <tr>
                     <th>playerId</th>
-                    <th>playerLastName</th>
-                    <th>playerFirstName</th>
+                    <th>Player Name</th>
                     <th>playerBats</th>
                     <th>playerThrows</th>
 
-                    <th>Player</th>
+                    <th>Team</th>
                     <th>Batting Order</th>
                     <th>Field Position</th>
                     <th>Starting/Substitute</th>
@@ -80,8 +73,7 @@
                 <tr th:each="game : ${gamesPlayer}">
 
                     <td th:text="${game.playerId }"></td>
-                    <td th:text="${game.playerLastName }"></td>
-                    <td th:text="${game.playerFirstName }"></td>
+                    <td th:text="${game.playerLastName } + ', ' + ${game.playerFirstName }"></td>
                     <td th:text="${game.playerBatsText }"></td>
                     <td th:text="${game.playerThrowsText }"></td>
 

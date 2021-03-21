@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,11 +24,6 @@ public class ResultsController {
 //        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, null, null, null, "mcgew001");
         Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, null, null, null, "vuckp001");
 
-        for (GamePlayer gamePlayer : gamesPlayer) {
-            gamePlayer.getGameId();
-        }
-
-
         model.addAttribute("title", "Play Ball - Player");
         model.addAttribute("gamesPlayer", gamesPlayer);
 
@@ -35,14 +31,10 @@ public class ResultsController {
     }
 
     @GetMapping(value="/game")
-    public String getGame(Model model){
+    public String getGame(@RequestParam("year") String year, @RequestParam("gameId") String gameId, Model model ){
 //        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, "SLN198210200", null, null, null);
 //        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(2015, "SLN201505020", null, null, null);
-        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, "CAL198210060", null, null, null);
-        for (GamePlayer gamePlayer : gamesPlayer) {
-            gamePlayer.getGameId();
-        }
-
+        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(Integer.parseInt(year), gameId, null, null, null);
 
         model.addAttribute("title", "Play Ball - Game");
         model.addAttribute("gamesPlayer", gamesPlayer);

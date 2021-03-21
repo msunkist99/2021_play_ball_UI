@@ -11,7 +11,8 @@ public class Year {
     public int gameYear;
 
     // no argument constructor, required for Hibernate to create an object.
-    Public Year(){ }
+    public Year() {
+    }
 
     public int getGameYear() {
         return gameYear;

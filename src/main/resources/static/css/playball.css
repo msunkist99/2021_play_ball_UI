@@ -28,9 +28,10 @@ td {
     vertical-align: top;
 }
 
-tr:nth-child(odd) {
+/* tr:nth-child(odd) {
     background-color: #e4e4e4;
 }
+*/
 
 .centeredTable {
     margin-left: auto;

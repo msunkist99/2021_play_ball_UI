@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+
+
+<body>
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <form method="get" action="queryGameType" style="max-width:600px;">
+
+        <div class="form-group">
+            <label th:for="year">Season</label>
+            <select id="year"   name="year" >
+                <option th:each="year : ${years}"
+                        th:text="${year.gameYear}"
+                        th:value="${year.gameYear}"></option>
+            </select>
+        </div>
+
+        <input type="submit" value="Run Query" />
+    </form>
+
+</div>
+
+</body>
+</html>

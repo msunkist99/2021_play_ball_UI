@@ -12,7 +12,7 @@
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
     <div class="row no-gutters">
-        <div class="col-md-2 leftSide no-gutters">
+        <div class="col-lg-6 leftSide no-gutters">
             <table class="centeredTable" table-condensed>
                 <tr>
                     <td th:text="${gamesPlayer[0].playerId}"></td>
@@ -29,7 +29,7 @@
             </table>
         </div>
 
-        <div class="col-md-2 rightSide no-gutters">
+        <div class="col-lg-6 rightSide no-gutters">
             <table class="centeredTable table-condensed">
                 <tr>
                     <th>gameId</th>
@@ -63,8 +63,7 @@
 
 
                     <td>
-                        <span th:if="${game.playerBattingOrder == 10}"></span>
-                        <span th:unless="${game.playerBattingOrder == 10}" th:text="${game.playerBattingOrder}"></span>
+                        <span th:if="${game.playerBattingOrder != 10 and game.playerBattingOrder != 0}" th:text="${game.playerBattingOrder}"></span>
                     </td>
 
                     <td th:text="${game.playerFieldPositionText }"></td>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head">
+</head>
+
+<body>
+<div  class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{/playball/query}" class="navbar-brand">Play Ball</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/playball/login}">User Login</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+
+<form method="post">
+    <div class="form-group">
+        <label th:for="username">Username
+            <input class="form-control" th:field="${loginFormDataTransferObject.username}">
+        </label>
+        <p class="error" th:errors="${loginFormDataTransferObject.username}"></p>
+    </div>
+    <div class="form-group">
+        <label>Password
+            <input class="form-control" th:field="${loginFormDataTransferObject.password}" type="password">
+        </label>
+        <p class="error" th:errors="${loginFormDataTransferObject.password}"></p>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Log In" />
+</form>
+
+<p>Don't have an account? <a href="/playball/register">Register for one.</a></p>
+</div>
+</body>
+</html>

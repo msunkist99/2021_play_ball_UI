@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head">
+</head>
+
+<body>
+<div  class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{/playball/query}" class="navbar-brand">Play Ball</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/playball/register}">User Registration</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+
+<form method="post">
+    <div class="form-group">
+        <label>Username
+            <input class="form-control" th:field="${registerFormDataTransferObject.username}" />
+        </label>
+        <p class="error" th:errors="${registerFormDataTransferObject.username}"></p>
+    </div>
+    <div class="form-group">
+        <label>Password
+            <input class="form-control" th:field="${registerFormDataTransferObject.password}" type="password" />
+        </label>
+        <p class="error" th:errors="${registerFormDataTransferObject.password}"></p>
+    </div>
+    <div class="form-group">
+        <label>Verify Password
+            <input class="form-control" th:field="${registerFormDataTransferObject.verifyPassword}" type="password" />
+        </label>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Register" />
+</form>
+</div>
+</body>
+</html>

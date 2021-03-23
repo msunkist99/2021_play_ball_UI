@@ -124,4 +124,9 @@ public class AuthenticationController {
         return "redirect:query";
     }
 
+    @GetMapping("playball/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:login";
+    }
 }

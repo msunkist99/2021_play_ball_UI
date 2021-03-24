@@ -49,7 +49,7 @@ public class AuthenticationController {
     @GetMapping("playball/register")
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDataTransferObject());
-        model.addAttribute("title", "Register");
+        model.addAttribute("title", "Play Ball - Register");
         return "register";
     }
 
@@ -58,8 +58,9 @@ public class AuthenticationController {
                                           Errors errors, HttpServletRequest request,
                                           Model model) {
 
+        model.addAttribute("title", "Play Ball - Register");
+
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Register");
             return "register";
         }
 
@@ -67,7 +68,6 @@ public class AuthenticationController {
 
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
-            model.addAttribute("title", "Register");
             return "register";
         }
 
@@ -75,7 +75,6 @@ public class AuthenticationController {
         String verifyPassword = registerFormDataTransferObject.getVerifyPassword();
         if (!password.equals(verifyPassword)) {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
-            model.addAttribute("title", "Register");
             return "register";
         }
 
@@ -89,7 +88,7 @@ public class AuthenticationController {
     @GetMapping("playball/login")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDataTransferObject());
-        model.addAttribute("title", "Log In");
+        model.addAttribute("title", "Play Ball - Log In");
         return "login";
     }
 
@@ -98,8 +97,9 @@ public class AuthenticationController {
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
 
+        model.addAttribute("title", "Play Ball - Log In");
+
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Log In");
             return "login";
         }
 
@@ -107,7 +107,6 @@ public class AuthenticationController {
 
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");
-            model.addAttribute("title", "Log In");
             return "login";
         }
 
@@ -115,7 +114,6 @@ public class AuthenticationController {
 
         if (!theUser.isMatchingPassword(password)) {
             errors.rejectValue("password", "password.invalid", "Invalid password");
-            model.addAttribute("title", "Log In");
             return "login";
         }
 

@@ -20,6 +20,9 @@
 
 <div class="container body-content">
 
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <label>Your place for Major League Baseball Game and Player Information</label>
+
 <form method="post">
     <div class="form-group">
         <label>Username
@@ -40,6 +43,10 @@
     </div>
 
     <input type="submit" class="btn btn-primary" value="Register" />
+
+    <div th:replace="fragments :: disclaimer">
+    </div>
+
 </form>
 </div>
 </body>

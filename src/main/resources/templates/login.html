@@ -18,10 +18,17 @@
     </div>
 </div>
 
-<div class="container body-content">
+<div class="container body-content ">
+
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <label>Your place for Major League Baseball Game and Player Information</label>
 
 <form method="post">
-    <div class="form-group">
+    <div class="form-group ">
+        <br>
+        <br>
+        <label><strong>Already a member?</strong></label>
+        <br>
         <label th:for="username">Username
             <input class="form-control" th:field="${loginFormDataTransferObject.username}">
         </label>
@@ -36,8 +43,16 @@
 
     <input type="submit" class="btn btn-primary" value="Log In" />
 </form>
+    <br>
+    <br>
+    <label>Don't have a Play Ball account?</label>
+    <br>
+    <label><a href="/playball/register">Register now!</a></label>
 
-<p>Don't have an account? <a href="/playball/register">Register for one.</a></p>
+
+    <div th:replace="fragments :: disclaimer">
+    </div>
+
 </div>
 </body>
 </html>

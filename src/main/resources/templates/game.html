@@ -11,80 +11,50 @@
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-    <div class="row no-gutters">
-        <div class="col-lg-6 leftSide no-gutters">
-            <table class="centeredTable table-condensed">
-                <tr>
-                    <td th:text="${gamesPlayer[0].gameId}"></td>
-                </tr>
-                <tr>
-                    <td th:text="'Season - ' + ${gamesPlayer[0].year}"></td>
-                </tr>
-                <tr>
-                    <td th:text="'Game Date - ' + ${gamesPlayer[0].date}"></td>
-                </tr>
-                <tr>
-                    <td th:text="'Game Type - ' + ${#strings.capitalizeWords(gamesPlayer[0].gameTypeText)}"></td>
-                </tr>
-                <tr>
-                    <td th:text="'Game Number - ' + ${gamesPlayer[0].gameNumText}"></td>
-                </tr>
-                <tr>
-                    <td th:text="${gamesPlayer[0].dayNightText + ' game'}"></td>
-                </tr>
-                <tr>
-                    <td><strong>Visiting Team</strong></td>
-                </tr>
-                <tr>
-                    <td th:text="${gamesPlayer[0].visitingTeamCity} + ' ' +${gamesPlayer[0].visitingTeamName}"></td>
-                </tr>
-                <tr>
-                    <td th:text="${gamesPlayer[0].visitingTeamLeagueText} + ' League'"></td>
-                </tr>
-                <tr> </tr>
-                <tr> </tr>
-                <tr></tr>
-                <tr>
-                    <td><strong>Home Team</strong></td>
-                </tr>
-                <tr>
-                    <td th:text="${gamesPlayer[0].homeTeamCity} + ' ' + ${gamesPlayer[0].homeTeamName}"></td>
-                </tr>
-                <tr>
-                    <td th:text="${gamesPlayer[0].homeTeamLeagueText} + ' League'"></td>
-                </tr>
-            </table>
+    <div class="queryResultsHeader1">
+        <label th:text="${gamesPlayer[0].year} + ' - ' + ${#strings.capitalizeWords(gamesPlayer[0].gameTypeText)}"></label>
+        <br>
+        <label th:text="${gamesPlayer[0].date}"></label>
+        <br>
+        <div class="queryResultsHeader2">
+            <label th:text="'Game ' + ${gamesPlayer[0].gameNumText} + ' - ' + ${gamesPlayer[0].dayNightText} + ' game'"></label>
+            <br>
+            <label th:text="'Visiting Team - ' + ${gamesPlayer[0].visitingTeamCity} + ' ' +${gamesPlayer[0].visitingTeamName} + ' - ' + ${gamesPlayer[0].visitingTeamLeagueText} + ' League'"></label>
+            <br>
+            <label th:text="'Home Team - ' + ${gamesPlayer[0].homeTeamCity} + ' ' +${gamesPlayer[0].homeTeamName} + ' - ' + ${gamesPlayer[0].homeTeamLeagueText} + ' League'"></label>
+            <br>
         </div>
+    </div>
 
-        <div class="col-lg-6 rightSide no-gutters">
+
+    <div class="row ">
+        <div class="col-lg-12 rightSide no-gutters">
             <table class="centeredTable table-condensed">
                 <tr>
-                    <th>playerId</th>
                     <th>Player Name</th>
-                    <th>playerBats</th>
-                    <th>playerThrows</th>
+                    <th>Bats</th>
+                    <th>Throws</th>
 
-                    <th>Team</th>
+                    <th>Player</th>
                     <th>Batting Order</th>
                     <th>Field Position</th>
-                    <th>Starting/Substitute</th>
                 </tr>
 
                 <tr th:each="game : ${gamesPlayer}">
 
-                    <td th:text="${game.playerId }"></td>
-                    <td th:text="${game.playerLastName } + ', ' + ${game.playerFirstName }"></td>
+                    <td><a th:href="@{/playball/gamePlayer(year=${game.year}, gameId='', playerId=${game.playerId}, option='player')}" th:text="${game.playerLastName } + ', ' + ${game.playerFirstName }"/></td>
+
                     <td th:text="${game.playerBatsText }"></td>
                     <td th:text="${game.playerThrowsText }"></td>
 
-                    <td th:text="${game.playerVisitHomeText }"></td>
 
+                    <td th:text="${game.playerVisitHomeText } + ' team ' + ${game.playerStartSubText } + ' player'"></td>
                     <td>
                         <span th:if="${game.playerBattingOrder != 10 and game.playerBattingOrder != 0}" th:text="${game.playerBattingOrder}"></span>
                     </td>
 
                     <td th:text="${game.playerFieldPositionText }"></td>
-                    <td th:text="${game.playerStartSubText }"></td>
+
                 </tr>
             </table>
         </div>

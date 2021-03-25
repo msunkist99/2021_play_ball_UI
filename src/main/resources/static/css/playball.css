@@ -1,14 +1,8 @@
-.leftSide, .rightSide {
-/*    height: 100vh; */
-}
-
 .leftSide {
-    width: 20%;
     background:#a9d08e;
 }
 
 .rightSide {
-    width: 80%;
     background: #c6e0b4;
 }
 
@@ -77,4 +71,16 @@ div.disclaimer {
     bottom: 50px;
     text-align: center;
     font-style: italic;
+}
+
+div.queryResultsHeader1 {
+    /*position:   fixed; */
+    margin-left: 30px;
+    font-size: 30px;
+}
+
+div.queryResultsHeader2 {
+    /*position:   fixed; */
+    margin-left: 40px;
+    font-size: 20px;
 }

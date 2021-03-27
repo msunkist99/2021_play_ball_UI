@@ -28,41 +28,43 @@
 
 
 
-            <table class="table-condensed rightSide">
+            <table  class="table table-fixed rightSide">
+                <thead>
                 <tr>
-                    <th style="text-align:left">Player Name</th>
-                    <th style="text-align:left">Bats</th>
-                    <th style="text-align:left">Throws</th>
+                    <th class="col-xs-2" style="text-align:left" scope="col">Player Name</th>
+                    <th class="col-xs-2" style="text-align:left" scope="col">Bats</th>
+                    <th class="col-xs-1" style="text-align:left" scope="col">Throws</th>
 
-                    <th style="text-align:left">Player</th>
-                    <th style="text-align:left">Field Position</th>
-                    <th style="text-align:center">Batting Order</th>
+                    <th class="col-xs-3" style="text-align:left" scope="col">Player</th>
+                    <th class="col-xs-2" style="text-align:left" scope="col">Field Position</th>
+                    <th class="col-xs-2" style="text-align:center" scope="col">Batting Order</th>
 
                 </tr>
+                </thead>
 
+                <tbody>
                 <tr th:each="game : ${gamesPlayer}">
 
-                    <td><a th:href="@{/playball/gamePlayer(year=${game.year}, gameId='', playerId=${game.playerId}, option='player')}" th:text="${game.playerLastName } + ', ' + ${game.playerFirstName }"/></td>
+                    <td class="col-xs-2" ><a th:href="@{/playball/gamePlayer(year=${game.year}, gameId='', playerId=${game.playerId}, option='player')}" th:text="${game.playerLastName } + ', ' + ${game.playerFirstName }"/></td>
 
-                    <td th:text="${game.playerBatsText }"></td>
-                    <td th:text="${game.playerThrowsText }"></td>
+                    <td class="col-xs-2" th:text="${game.playerBatsText }"></td>
+                    <td class="col-xs-1" th:text="${game.playerThrowsText }"></td>
 
 
-                    <td th:text="${game.playerVisitHomeText } + ' team ' + ${game.playerStartSubText } + ' player'"></td>
+                    <td class="col-xs-3" th:text="${game.playerVisitHomeText } + ' team ' + ${game.playerStartSubText } + ' player'"></td>
 
-                    <td th:text="${game.playerFieldPositionText }"></td>
+                    <td class="col-xs-2" th:text="${game.playerFieldPositionText }"></td>
 
-                    <td style="text-align:center">
+                    <td class="col-xs-2" style="text-align:center">
                         <span th:if="${game.playerBattingOrder != 10 and game.playerBattingOrder != 0}" th:text="${game.playerBattingOrder}"></span>
                     </td>
 
 
                 </tr>
+                </tbody>
+
             </table>
 
-
-
-</div>
 
 </body>
 </html>

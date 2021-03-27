@@ -10,42 +10,6 @@
     margin-top: 72px;
 }
 
-td, th {
-    padding: 10px;
-}
-
-th {
-    text-align: center;
-}
-
-td {
-    vertical-align: top;
-}
-
-/* tr:nth-child(odd) {
-    background-color: #e4e4e4;
-}
-*/
-
-.centeredTable {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-table.job-listing {
-    margin: 30px auto;
-    border: 1px solid #e4e4e4;
-    width: 80%;
-}
-
-table.job-listing td:first-child {
-    font-weight: bold;
-}
-
-table.job-listing td:last-child {
-    width: 80%;
-}
-
 label {
     margin-right: 15px;
 }
@@ -60,11 +24,6 @@ p {
 }
 
 
-div.job-listing {
-    border: 1px solid #e4e4e4;
-    width: 80%;
-    background-color: #e4e4e4;
-}
 
 div.disclaimer {
     position: fixed;
@@ -83,4 +42,42 @@ div.queryResultsHeader2 {
     /*position:   fixed; */
     margin-left: 40px;
     font-size: 20px;
+}
+
+
+
+.table-fixed tbody {
+height: 500px;
+overflow-y: auto;
+width: 100%;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+display: block;
+}
+
+.table-fixed tr:after {
+content: "";
+display: block;
+visibility: hidden;
+clear: both;
+}
+
+.table-fixed tbody td,
+.table-fixed thead > tr > th {
+float: left;
+}
+
+.table > thead > tr > th,
+.table > thead > tr > td {
+
+font-weight: bold;
+border-bottom: 0;
+letter-spacing: 1px;
+vertical-align: top;
+padding: 8px;
 }

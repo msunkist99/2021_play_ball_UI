@@ -14,10 +14,9 @@
     <div class="queryResultsHeader1">
         <label th:text="${gamesPlayer[0].year} + ' - ' + ${#strings.capitalizeWords(gamesPlayer[0].gameTypeText)}"></label>
         <br>
-        <label th:text="${gamesPlayer[0].date}"></label>
-        <br>
+
         <div class="queryResultsHeader2">
-            <label th:text="'Game ' + ${gamesPlayer[0].gameNumText} + ' - ' + ${gamesPlayer[0].dayNightText} + ' game'"></label>
+            <label th:text="${gamesPlayer[0].date} + ' Game ' + ${gamesPlayer[0].gameNumText} + ' - ' + ${gamesPlayer[0].dayNightText} + ' game'"></label>
             <br>
             <label th:text="'Visiting Team - ' + ${gamesPlayer[0].visitingTeamCity} + ' ' +${gamesPlayer[0].visitingTeamName} + ' - ' + ${gamesPlayer[0].visitingTeamLeagueText} + ' League'"></label>
             <br>
@@ -27,17 +26,18 @@
     </div>
 
 
-    <div class="row ">
-        <div class="col-lg-12 rightSide no-gutters">
-            <table class="centeredTable table-condensed">
-                <tr>
-                    <th>Player Name</th>
-                    <th>Bats</th>
-                    <th>Throws</th>
 
-                    <th>Player</th>
-                    <th>Batting Order</th>
-                    <th>Field Position</th>
+
+            <table class="table-condensed rightSide">
+                <tr>
+                    <th style="text-align:left">Player Name</th>
+                    <th style="text-align:left">Bats</th>
+                    <th style="text-align:left">Throws</th>
+
+                    <th style="text-align:left">Player</th>
+                    <th style="text-align:left">Field Position</th>
+                    <th style="text-align:center">Batting Order</th>
+
                 </tr>
 
                 <tr th:each="game : ${gamesPlayer}">
@@ -49,16 +49,18 @@
 
 
                     <td th:text="${game.playerVisitHomeText } + ' team ' + ${game.playerStartSubText } + ' player'"></td>
-                    <td>
-                        <span th:if="${game.playerBattingOrder != 10 and game.playerBattingOrder != 0}" th:text="${game.playerBattingOrder}"></span>
-                    </td>
 
                     <td th:text="${game.playerFieldPositionText }"></td>
 
+                    <td style="text-align:center">
+                        <span th:if="${game.playerBattingOrder != 10 and game.playerBattingOrder != 0}" th:text="${game.playerBattingOrder}"></span>
+                    </td>
+
+
                 </tr>
             </table>
-        </div>
-    </div>
+
+
 
 </div>
 

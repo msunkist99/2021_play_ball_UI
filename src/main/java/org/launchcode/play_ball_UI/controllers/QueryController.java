@@ -65,7 +65,7 @@ public class QueryController {
 
     @GetMapping(value = "playball/player")
     public String getPlayer(@RequestParam("year") String year, @RequestParam("playerId") String playerId, Model model) {
-        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, null, null, null, playerId);
+        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(Integer.parseInt(year), null, null, null, playerId);
 
         model.addAttribute("title", "Play Ball - Player");
         model.addAttribute("gamesPlayer", gamesPlayer);

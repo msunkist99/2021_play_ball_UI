@@ -22,36 +22,51 @@
             <label  th:text="'Game Type - ' +  ${#strings.capitalizeWords(gameTypeText)}"></label>
         </div>
 
-        <div class="form-group">
-            <label th:for="games">Games</label>
-            <select id="gameId" name="gameId" >
-                <option th:each="game : ${games}"
-                        th:text="${game.date} + ' - ' + ${game.homeTeamName} + ' vs ' + ${game.visitingTeamName} + ' @ ' + ${game.homeTeamCity}"
-                        th:value="${game.gameId}"></option>
-            </select>
-        </div>
 
-        <div class="form-group">
-            <label th:for="games">Players</label>
-            <select id="playerId" name="playerId"  >
-                <option th:each="player : ${players}"
-                        th:text="${player.playerLastName} + ', ' + ${player.playerFirstName} + ' - ' + ${player.playerTeamCity} + ' ' + ${player.playerTeamName}"
-                        th:value="${player.playerId}"></option>
-            </select>
-        </div>
 
-        <div class="form-group">
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="optionGame" name="option" class="custom-control-input" value="game" checked="checked" >
-                <label class="custom-control-label" for="optionGame">Find Game</label>
+            <div class="row" style="width:900px">
+                <div class="col-sm-6">
+                    <table class="table table-fixed leftSide">
+                        <thead>
+                        <tr>
+                            <th class="col-xs-1" style="text-align:left" scope="col">Games</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="game : ${games}">
+                            <td>    <a th:href="@{/playball/gamePlayer(year=${game.year}, gameId=${game.gameId}, playerId='', option='game')}"
+                                       th:text="${game.date} + ' - ' + ${game.visitingTeamName} + ' vs ' + ${game.homeTeamName} + ' @ ' + ${game.homeTeamCity}" />
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <div class="col-sm-6">
+                    <table class="table table-fixed rightSide">
+                        <thead>
+                        <tr>
+                            <th class="col-xs-1" style="text-align:left" scope="col">Players</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="player : ${players}">
+                            <td>
+                                <a th:href="@{/playball/gamePlayer(year='', gameId='', playerId=${player.playerId}, option='player')}"
+                                   th:text="${player.playerLastName} + ', ' + ${player.playerFirstName} + ' - ' + ${player.playerTeamCity} + ' ' + ${player.playerTeamName}" />
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
             </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="optionPlayer" name="option" class="custom-control-input" value="player" >
-                <label class="custom-control-label" for="optionPlayer">Find Player</label>
-            </div>
-        </div>
 
-        <input type="submit" value="Submit" />
+
 
         <div th:replace="fragments :: disclaimer">
         </div>

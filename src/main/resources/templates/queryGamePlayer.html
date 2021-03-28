@@ -55,7 +55,7 @@
                         <tbody>
                         <tr th:each="player : ${players}">
                             <td>
-                                <a th:href="@{/playball/gamePlayer(year='', gameId='', playerId=${player.playerId}, option='player')}"
+                                <a th:href="@{/playball/gamePlayer(year=${player.playerYear}, gameId='', playerId=${player.playerId}, option='player')}"
                                    th:text="${player.playerLastName} + ', ' + ${player.playerFirstName} + ' - ' + ${player.playerTeamCity} + ' ' + ${player.playerTeamName}" />
                             </td>
                         </tr>

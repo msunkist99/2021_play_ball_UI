@@ -33,7 +33,7 @@ public class YearGameTypePlayerDataAccessObject {
             yearGameTypePlayer.setPlayerTeamId(row[3].toString());
             yearGameTypePlayer.setPlayerTeamName(row[4].toString());
             yearGameTypePlayer.setPlayerTeamCity(row[5].toString());
-
+            yearGameTypePlayer.setPlayerYear((Integer) row[6]);
             yearGameTypePlayers.add(yearGameTypePlayer);
         }
 

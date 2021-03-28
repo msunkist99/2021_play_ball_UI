@@ -6,11 +6,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 import java.util.Objects;
 
 @Entity
 public class User {
-
 
     @Id
     @GeneratedValue
@@ -22,6 +22,16 @@ public class User {
     @NotNull
     private String pwHash;
 
+    @NotNull
+    @Email
+    private String userEmail;
+
+    @NotNull
+    private String userFirstName;
+
+    @NotNull
+    private String userLastName;
+
     // no arg constructor
     public User() {}
 
@@ -29,21 +39,36 @@ public class User {
 
 
     // Notice that the constructor takes a parameter named password and uses it to set the value of pwHash.
-    public User(String username, String password) {
+    public User(String username, String password, String userEmail, String userFirstName, String userLastName) {
         this.username = username;
         this.pwHash = encoder.encode(password);
+        this.userEmail = userEmail;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getUsername() {
         return username;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    public String getUserLastName() {
+        return userLastName;
     }
 
     // Notice that we are using encoder.matches() rather than directly comparing hash values.

@@ -18,6 +18,7 @@ public class YearGameTypePlayer {
     private String playerTeamId;
     private String playerTeamName;
     private String playerTeamCity;
+    private int playerYear;
 
     // no-arg constructor
     public YearGameTypePlayer() {
@@ -71,17 +72,25 @@ public class YearGameTypePlayer {
         this.playerTeamCity = playerTeamCity;
     }
 
+    public int getPlayerYear() {
+        return playerYear;
+    }
+
+    public void setPlayerYear(int year) {
+        this.playerYear = year;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof YearGameTypePlayer)) return false;
         YearGameTypePlayer that = (YearGameTypePlayer) o;
-        return Objects.equals(getPlayerId(), that.getPlayerId()) && Objects.equals(getPlayerLastName(), that.getPlayerLastName()) && Objects.equals(getPlayerFirstName(), that.getPlayerFirstName()) && Objects.equals(getPlayerTeamId(), that.getPlayerTeamId()) && Objects.equals(getPlayerTeamName(), that.getPlayerTeamName()) && Objects.equals(getPlayerTeamCity(), that.getPlayerTeamCity());
+        return getPlayerYear() == that.getPlayerYear() && Objects.equals(getPlayerId(), that.getPlayerId()) && Objects.equals(getPlayerTeamId(), that.getPlayerTeamId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPlayerId(), getPlayerLastName(), getPlayerFirstName(), getPlayerTeamId(), getPlayerTeamName(), getPlayerTeamCity());
+        return Objects.hash(getPlayerId(), getPlayerLastName(), getPlayerFirstName(), getPlayerTeamId(), getPlayerTeamName(), getPlayerTeamCity(), getPlayerYear());
     }
 
     @Override
@@ -93,6 +102,7 @@ public class YearGameTypePlayer {
                 ", playerTeamId='" + playerTeamId + '\'' +
                 ", playerTeamName='" + playerTeamName + '\'' +
                 ", playerTeamCity='" + playerTeamCity + '\'' +
+                ", year=" + playerYear +
                 '}';
     }
 }

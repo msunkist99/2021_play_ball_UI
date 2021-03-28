@@ -99,7 +99,7 @@ public class QueryController {
             return "game";
         }
         else {
-            Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(1982, null, null, null, playerId);
+            Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(Integer.parseInt(year), null, null, null, playerId);
 
             model.addAttribute("title", "Play Ball - Player");
             model.addAttribute("gamesPlayer", gamesPlayer);

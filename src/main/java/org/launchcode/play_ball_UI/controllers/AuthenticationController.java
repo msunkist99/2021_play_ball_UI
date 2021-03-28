@@ -78,11 +78,16 @@ public class AuthenticationController {
             return "register";
         }
 
-        User newUser = new User(registerFormDataTransferObject.getUsername(), registerFormDataTransferObject.getPassword());
+        User newUser = new User(registerFormDataTransferObject.getUsername(),
+                                registerFormDataTransferObject.getPassword(),
+                                registerFormDataTransferObject.getUserEmail(),
+                                registerFormDataTransferObject.getUserFirstName(),
+                                registerFormDataTransferObject.getUserLastName());
+
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:";
+        return "redirect:query";
     }
 
     @GetMapping("playball/login")

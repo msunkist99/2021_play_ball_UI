@@ -88,7 +88,8 @@ public class QueryController {
                                 @RequestParam("gameId") String gameId,
                                 @RequestParam("playerId") String playerId,
                                 @RequestParam("option") String option,
-                                Model model) {
+                                Model model)
+    {
 
         if (option.equals("game")) {
             Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(Integer.parseInt(year), gameId, null, null, null);

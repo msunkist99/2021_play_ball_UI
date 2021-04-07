@@ -5,7 +5,6 @@ To be useful this data needs to be organized and loaded into a database where it
 
 
 
-
 ### Features
 My project will load just small set of this data for major league seasons 1982 and 2015 to a database
 - game data for all games of the 1982 and 2015 seasons 

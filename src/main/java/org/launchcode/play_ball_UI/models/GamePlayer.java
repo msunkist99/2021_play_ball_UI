@@ -4,18 +4,17 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-//@Table(name= "game_player")
-//@NamedStoredProcedureQueries(value= {
-        @NamedStoredProcedureQuery(name= "get-games-players", procedureName= "play_ball.GetGamesPlayers",
-                parameters= {
-                        @StoredProcedureParameter(mode= ParameterMode.IN, name= "game_year", type= Integer.class),
-                        @StoredProcedureParameter(mode= ParameterMode.IN, name= "game_id", type= String.class),
-                        @StoredProcedureParameter(mode= ParameterMode.IN, name= "game_visiting_team", type= String.class),
-                        @StoredProcedureParameter(mode= ParameterMode.IN, name= "game_home_team", type= String.class),
-                        @StoredProcedureParameter(mode= ParameterMode.IN, name= "player_id", type= String.class)
-                })
-//})
+@NamedStoredProcedureQuery(name= "get-games-players", procedureName= "play_ball.GetGamesPlayers",
+        parameters= {
+                @StoredProcedureParameter(mode= ParameterMode.IN, name= "game_year", type= Integer.class),
+                @StoredProcedureParameter(mode= ParameterMode.IN, name= "game_id", type= String.class),
+                @StoredProcedureParameter(mode= ParameterMode.IN, name= "game_visiting_team", type= String.class),
+                @StoredProcedureParameter(mode= ParameterMode.IN, name= "game_home_team", type= String.class),
+                @StoredProcedureParameter(mode= ParameterMode.IN, name= "player_id", type= String.class)
+        })
 
+
+@NamedStoredProcedureQuery(name= "get-lookup-data", procedureName= "play_ball.GetLookupData")
 
 public class GamePlayer {
 
@@ -57,19 +56,14 @@ public class GamePlayer {
     private int playerFieldPosition;
     private String playerFieldPositionText;
 
-
-    // The protected keyword is an access modifier used for attributes, methods and constructors,
-    // making them accessible in the same package and subclasses.
-    protected GamePlayer(){ }
+    // no argument constructor, required for Hibernate to create an object.
+    public GamePlayer(){ }
 
     public String getGameId() {
         return gameId;
     }
 
-    public String getDate() {
-        String correctedDate = date.substring(3) + date.substring(0,3);
-        return correctedDate;
-    }
+    public String getDate() { return date; }
 
     public int getYear() {
         return year;
@@ -193,6 +187,138 @@ public class GamePlayer {
 
     public String getPlayerFieldPositionText() {
         return playerFieldPositionText;
+    }
+
+    public void setGameId(String gameId) {
+        this.gameId = gameId;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setGameType(char gameType) {
+        this.gameType = gameType;
+    }
+
+    public void setGameTypeText(String gameTypeText) {
+        this.gameTypeText = gameTypeText;
+    }
+
+    public void setDayNight(char dayNight) {
+        this.dayNight = dayNight;
+    }
+
+    public void setDayNightText(String dayNightText) {
+        this.dayNightText = dayNightText;
+    }
+
+    public void setGameNum(int gameNum) {
+        this.gameNum = gameNum;
+    }
+
+    public void setGameNumText(String gameNumText) {
+        this.gameNumText = gameNumText;
+    }
+
+    public void setHomeTeam(String homeTeam) {
+        this.homeTeam = homeTeam;
+    }
+
+    public void setHomeTeamName(String homeTeamName) {
+        this.homeTeamName = homeTeamName;
+    }
+
+    public void setHomeTeamCity(String homeTeamCity) {
+        this.homeTeamCity = homeTeamCity;
+    }
+
+    public void setHomeTeamLeague(char homeTeamLeague) {
+        this.homeTeamLeague = homeTeamLeague;
+    }
+
+    public void setHomeTeamLeagueText(String homeTeamLeagueText) {
+        this.homeTeamLeagueText = homeTeamLeagueText;
+    }
+
+    public void setVisitingTeam(String visitingTeam) {
+        this.visitingTeam = visitingTeam;
+    }
+
+    public void setVisitingTeamName(String visitingTeamName) {
+        this.visitingTeamName = visitingTeamName;
+    }
+
+    public void setVisitingTeamCity(String visitingTeamCity) {
+        this.visitingTeamCity = visitingTeamCity;
+    }
+
+    public void setVisitingTeamLeague(char visitingTeamLeague) {
+        this.visitingTeamLeague = visitingTeamLeague;
+    }
+
+    public void setVisitingTeamLeagueText(String visitingTeamLeagueText) {
+        this.visitingTeamLeagueText = visitingTeamLeagueText;
+    }
+
+    public void setPlayerId(String playerId) {
+        this.playerId = playerId;
+    }
+
+    public void setPlayerLastName(String playerLastName) {
+        this.playerLastName = playerLastName;
+    }
+
+    public void setPlayerFirstName(String playerFirstName) {
+        this.playerFirstName = playerFirstName;
+    }
+
+    public void setPlayerBats(char playerBats) {
+        this.playerBats = playerBats;
+    }
+
+    public void setPlayerBatsText(String playerBatsText) {
+        this.playerBatsText = playerBatsText;
+    }
+
+    public void setPlayerThrows(char playerThrows) {
+        this.playerThrows = playerThrows;
+    }
+
+    public void setPlayerThrowsText(String playerThrowsText) {
+        this.playerThrowsText = playerThrowsText;
+    }
+
+    public void setPlayerStartSub(int playerStartSub) {
+        this.playerStartSub = playerStartSub;
+    }
+
+    public void setPlayerStartSubText(String playerStartSubText) {
+        this.playerStartSubText = playerStartSubText;
+    }
+
+    public void setPlayerVisitHome(int playerVisitHome) {
+        this.playerVisitHome = playerVisitHome;
+    }
+
+    public void setPlayerVisitHomeText(String playerVisitHomeText) {
+        this.playerVisitHomeText = playerVisitHomeText;
+    }
+
+    public void setPlayerBattingOrder(int playerBattingOrder) {
+        this.playerBattingOrder = playerBattingOrder;
+    }
+
+    public void setPlayerFieldPosition(int playerFieldPosition) {
+        this.playerFieldPosition = playerFieldPosition;
+    }
+
+    public void setPlayerFieldPositionText(String playerFieldPositionText) {
+        this.playerFieldPositionText = playerFieldPositionText;
     }
 
     @Override

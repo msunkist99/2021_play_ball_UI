@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+
+    <!-- Bootstrap stylesheets and script -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/css/playball.css}" rel="stylesheet" />
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+    <title th:text="${title}">xxx</title>
+</head>
+
+<body>
+
+<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a th:href="@{/playball/query}" class="navbar-brand">Play Ball</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/playball/query}">Reset</a></li>
+                <li><a th:href="@{/playball/logout}">Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div th:fragment="disclaimer" class="disclaimer">
+    <br>
+    <h5 style="margin:0px">The information used here was obtained free of charge from and is copyrighted by</h5>
+    <br>
+    <a href="http://retrosheet.org"> <img th:src="@{/img/retro-logo.gif}" alt="Retrosheet baseball bat" > </a>
+    <br>
+    <br>
+    <h5 style="margin:0px">Interested parties may contact Retrosheet at <a href="http://retrosheet.org"> www.retrosheet.org</a> </h5>
+    <h5 style="margin:0px">Retrosheet</h5>
+    <h5 style="margin:0px">20 Sunset Road</h5>
+    <h5 style="margin:0px">Newark, Delaware 19711</h5>
+    <br>
+
+
+</div>
+
+</body>
+</html>

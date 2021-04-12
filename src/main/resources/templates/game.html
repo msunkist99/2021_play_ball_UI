@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+    <div class="queryResultsHeader1">
+        <label th:text="${gamesPlayer[0].year} + ' - ' + ${#strings.capitalizeWords(gamesPlayer[0].gameTypeText)}"></label>
+        <br>
+
+        <div class="queryResultsHeader2">
+            <label th:text="${gamesPlayer[0].date} + ' Game ' + ${gamesPlayer[0].gameNumText} + ' - ' + ${gamesPlayer[0].dayNightText} + ' game'"></label>
+            <br>
+            <label th:text="'Visiting Team - ' + ${gamesPlayer[0].visitingTeamCity} + ' ' +${gamesPlayer[0].visitingTeamName} + ' - ' + ${gamesPlayer[0].visitingTeamLeagueText} + ' League'"></label>
+            <br>
+            <label th:text="'Home Team - ' + ${gamesPlayer[0].homeTeamCity} + ' ' +${gamesPlayer[0].homeTeamName} + ' - ' + ${gamesPlayer[0].homeTeamLeagueText} + ' League'"></label>
+            <br>
+        </div>
+    </div>
+
+
+
+
+            <table  class="table table-fixed rightSide">
+                <thead>
+                <tr>
+                    <th class="col-xs-2" style="text-align:left" scope="col">Player Name</th>
+                    <th class="col-xs-2" style="text-align:left" scope="col">Bats</th>
+                    <th class="col-xs-1" style="text-align:left" scope="col">Throws</th>
+
+                    <th class="col-xs-3" style="text-align:left" scope="col">Player</th>
+                    <th class="col-xs-2" style="text-align:left" scope="col">Field Position</th>
+                    <th class="col-xs-2" style="text-align:center" scope="col">Batting Order</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="game : ${gamesPlayer}">
+
+                    <td class="col-xs-2" ><a th:href="@{/playball/gamePlayer(year=${game.year}, gameId='', playerId=${game.playerId}, option='player')}" th:text="${game.playerLastName } + ', ' + ${game.playerFirstName }"/></td>
+
+                    <td class="col-xs-2" th:text="${game.playerBatsText }"></td>
+                    <td class="col-xs-1" th:text="${game.playerThrowsText }"></td>
+
+
+                    <td class="col-xs-3" th:text="${game.playerVisitHomeText } + ' team ' + ${game.playerStartSubText } + ' player'"></td>
+
+                    <td class="col-xs-2" th:text="${game.playerFieldPositionText }"></td>
+
+                    <td class="col-xs-2" style="text-align:center">
+                        <span th:if="${game.playerBattingOrder != 10 and game.playerBattingOrder != 0}" th:text="${game.playerBattingOrder}"></span>
+                    </td>
+
+
+                </tr>
+                </tbody>
+
+            </table>
+
+
+</body>
+</html>

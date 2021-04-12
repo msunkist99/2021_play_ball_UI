@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+
+
+<body>
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <form method="get" action="gamePlayer" style="max-width:600px;">
+
+        <div class="form-group">
+            <input type="hidden" th:value="${year}" name="year">
+            <label  th:text="'Season - ' +  ${year}"></label>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" th:value="${gameType}" >
+            <label  th:text="'Game Type - ' +  ${#strings.capitalizeWords(gameTypeText)}"></label>
+        </div>
+
+
+
+            <div class="row" style="width:900px">
+                <div class="col-sm-6">
+                    <table class="table table-fixed leftSide">
+                        <thead>
+                        <tr>
+                            <th class="col-xs-1" style="text-align:left" scope="col">Games</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="game : ${games}">
+                            <td>    <a th:href="@{/playball/gamePlayer(year=${game.year}, gameId=${game.gameId}, playerId='', option='game')}"
+                                       th:text="${game.date} + ' - ' + ${game.visitingTeamName} + ' vs ' + ${game.homeTeamName} + ' @ ' + ${game.homeTeamCity}" />
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <div class="col-sm-6">
+                    <table class="table table-fixed rightSide">
+                        <thead>
+                        <tr>
+                            <th class="col-xs-1" style="text-align:left" scope="col">Players</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="player : ${players}">
+                            <td>
+                                <a th:href="@{/playball/gamePlayer(year=${player.playerYear}, gameId='', playerId=${player.playerId}, option='player')}"
+                                   th:text="${player.playerLastName} + ', ' + ${player.playerFirstName} + ' - ' + ${player.playerTeamCity} + ' ' + ${player.playerTeamName}" />
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+
+
+
+        <div th:replace="fragments :: disclaimer">
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

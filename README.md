@@ -8,7 +8,8 @@ To be useful this data needs to be organized and loaded into a database where it
 ### Features
 My project will load just small set of this data for major league seasons 1982 and 2015 to a database
 - game data for all games of the 1982 and 2015 seasons 
-- player game data for all players of the 1982 and 2015 seasons 
+- player game data for all players of the 1982 and 2015 seasons
+- The data for 1982 and 2015 includes over 4500 games and 2,400 players and 129,000 records linking the games/players.
 
 My project wil then provide a simple UI that allows a user to query 
 - for a specific game and view information for the players of that game

@@ -4,6 +4,7 @@ package org.launchcode.play_ball_UI.models.dataAccessObjects;
 
 
 import org.launchcode.play_ball_UI.models.GamePlayer;
+import org.launchcode.play_ball_UI.models.YearGameTypePlayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 //import org.launchcode.play_ball_UI.models.dataAccessObjects.LookupDataAccessObject;
@@ -19,7 +20,7 @@ public class GamePlayerDataAccessObject {
 
     private static Map<String, String> lookupData = new HashMap<>();
 
-    public Iterable<GamePlayer> getGamesPlayers(int gameYear, String gameId, String gameVisitingTeamId, String gameHomeTeamId, String playerId) {
+    public Iterable<GamePlayer> getGamesPlayers(int gameYear, String gameId, String gameVisitingTeamId, String gameHomeTeamId, String playerId, String option, String sortKey) {
 
         if (lookupData.isEmpty())  {
             lookupData = LookupDataAccessObject.getLookupData(entityManager);
@@ -91,14 +92,27 @@ public class GamePlayerDataAccessObject {
             gamesPlayers.add(gamePlayer);
         }
 
-//        return entityManager.createNamedStoredProcedureQuery("get-games-players")
-//                .setParameter("game_year", gameYear)
-//                .setParameter("game_id", gameId)
-//                .setParameter("game_visiting_team", gameVisitingTeamId)
-//                .setParameter("game_home_team", gameHomeTeamId)
-//                .setParameter("player_id", playerId)
-//                .getResultList();
+        if (sortKey != "") {
+            gamesPlayers = getSortedGamesPlayers(gamesPlayers, option, sortKey);
+        }
 
         return  gamesPlayers;
+    }
+
+
+    private ArrayList<GamePlayer> getSortedGamesPlayers(ArrayList<GamePlayer> gamesPlayers , String option, String firstSortKey) {
+
+        if (option.equals("game")) {        // sort game data by player last name, first name
+            gamesPlayers.sort(Comparator.comparing(GamePlayer :: getPlayerLastName)
+                    .thenComparing(GamePlayer :: getPlayerFirstName)
+                    .thenComparing(GamePlayer :: getPlayerVisitHome));
+
+        }
+        else {      // dataSetType == "player"
+            gamesPlayers.sort(Comparator.comparing(GamePlayer :: getVisitingTeamName)
+                    .thenComparing(GamePlayer :: getGameId));
+        }
+
+        return gamesPlayers;
     }
 }

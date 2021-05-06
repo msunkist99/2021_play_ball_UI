@@ -84,7 +84,12 @@ public class GamePlayerDataAccessObject {
             gamePlayer.setPlayerVisitHome((Integer) row[20]);
             gamePlayer.setPlayerVisitHomeText(lookupData.get("visit_home" + row[20].toString()));
 
-            gamePlayer.setPlayerBattingOrder((Integer) row[21]);
+            if ((Integer) row[21] == 0) {
+                gamePlayer.setPlayerBattingOrder(10);
+            }
+            else {
+                gamePlayer.setPlayerBattingOrder((Integer) row[21]);
+            }
 
             gamePlayer.setPlayerFieldPosition((Integer) row[22]);
             gamePlayer.setPlayerFieldPositionText(lookupData.get("field_position" + row[22].toString()));

@@ -35,7 +35,7 @@
 
                         <tbody>
                         <tr th:each="game : ${games}">
-                            <td>    <a th:href="@{/playball/gamePlayer(year=${game.year}, gameId=${game.gameId}, playerId='', option='game')}"
+                            <td>    <a th:href="@{/playball/gamePlayer(year=${game.year}, gameId=${game.gameId}, playerId='', option='game', sortKey='')}"
                                        th:text="${game.date} + ' - ' + ${game.visitingTeamName} + ' vs ' + ${game.homeTeamName} + ' @ ' + ${game.homeTeamCity}" />
                             </td>
                         </tr>
@@ -55,7 +55,7 @@
                         <tbody>
                         <tr th:each="player : ${players}">
                             <td>
-                                <a th:href="@{/playball/gamePlayer(year=${player.playerYear}, gameId='', playerId=${player.playerId}, option='player')}"
+                                <a th:href="@{/playball/gamePlayer(year=${player.playerYear}, gameId='', playerId=${player.playerId}, option='player', sortKey='')}"
                                    th:text="${player.playerLastName} + ', ' + ${player.playerFirstName} + ' - ' + ${player.playerTeamCity} + ' ' + ${player.playerTeamName}" />
                             </td>
                         </tr>

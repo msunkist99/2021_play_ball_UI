@@ -30,24 +30,24 @@
     <table style="width:1415px" class="table table-fixed rightSide"  >
         <thead>
                 <tr>
-                    <th class="col-xs-1" style="text-align:left">Game Date</th>
-                    <th class="col-xs-1" style="text-align:left">Game<br>Type</th>
-                    <th class="col-xs-2"></th>
+                    <th class="col-xs-1" style="text-align:left"><a th:href="@{/playball/gamePlayer(year=${gamesPlayer[0].year}, gameId='', playerId=${gamesPlayer[0].playerId}, option='player', sortKey='GAME_ID')}"/>Game Date</th>
+                    <th class="col-xs-1" style="text-align:left"><a th:href="@{/playball/gamePlayer(year=${gamesPlayer[0].year}, gameId='', playerId=${gamesPlayer[0].playerId}, option='player', sortKey='GAME_TYPE')}"/>Game<br>Type</th>
+                    <th class="col-xs-2" style="text-align:left"><a th:href="@{/playball/gamePlayer(year=${gamesPlayer[0].year}, gameId='', playerId=${gamesPlayer[0].playerId}, option='player', sortKey='GAME_NUMBER')}"/>Game<br>Number</th>
 
-                    <th class="col-xs-2" style="text-align:left">Visiting Team</th>
-                    <th class="col-xs-2" style="text-align:left">Home Team</th>
+                    <th class="col-xs-2" style="text-align:left"><a th:href="@{/playball/gamePlayer(year=${gamesPlayer[0].year}, gameId='', playerId=${gamesPlayer[0].playerId}, option='player', sortKey='VISITING_TEAM')}"/>Visiting Team</th>
+                    <th class="col-xs-2" style="text-align:left"><a th:href="@{/playball/gamePlayer(year=${gamesPlayer[0].year}, gameId='', playerId=${gamesPlayer[0].playerId}, option='player', sortKey='HOME_TEAM')}"/>Home Team</th>
 
-                    <th class="col-xs-2" style="text-align:left">Player</th>
-                    <th class="col-xs-1" style="text-align:left">Field Position</th>
-                    <th class="col-xs-1" style="text-align:center">Batting<br>Order</th>
+                    <th class="col-xs-2" style="text-align:left"><a th:href="@{/playball/gamePlayer(year=${gamesPlayer[0].year}, gameId='', playerId=${gamesPlayer[0].playerId}, option='player', sortKey='PLAYER_NAME')}"/>Line Up</th>
+                    <th class="col-xs-1" style="text-align:left"><a th:href="@{/playball/gamePlayer(year=${gamesPlayer[0].year}, gameId='', playerId=${gamesPlayer[0].playerId}, option='player', sortKey='FIELD_POSITION')}"/>Field Position</th>
+                    <th class="col-xs-1" style="text-align:center"><a th:href="@{/playball/gamePlayer(year=${gamesPlayer[0].year}, gameId='', playerId=${gamesPlayer[0].playerId}, option='player', sortKey='BATTING_ORDER')}"/>Batting<br>Order</th>
                 </tr>
         </thead>
 
         <tbody>
                 <tr th:each="game : ${gamesPlayer}">
-                    <td class="col-xs-1" style="text-align:left"><a th:href="@{/playball/gamePlayer(year=${game.year}, gameId=${game.gameId}, playerId='', option='game')}" th:text="${game.date}"/></td>
+                    <td class="col-xs-1" style="text-align:left"><a th:href="@{/playball/gamePlayer(year=${game.year}, gameId=${game.gameId}, playerId='', option='game', sortKey='')}" th:text="${game.date}"/></td>
                     <td class="col-xs-1" style="text-align:left" th:text="${#strings.capitalizeWords(game.gameTypeText)}"></td>
-                    <td class="col-xs-2" style="text-align:left" th:text="'Game ' + ${game.gameNumText } + ' ' + ${game.dayNightText } + ' game'"></td>
+                    <td class="col-xs-2" style="text-align:left" th:text="'Game ' + ${game.gameNumText } + ' - ' + ${game.dayNightText } + ' game'"></td>
 
                     <td class="col-xs-2" style="text-align:left" th:text="${game.visitingTeamName } + ' - ' + ${game.visitingTeamLeagueText } + ' League'"></td>
                     <td class="col-xs-2" style="text-align:left" th:text="${game.homeTeamName } + ' - ' + ${game.homeTeamLeagueText } + ' League'"></td>

@@ -4,6 +4,7 @@ package org.launchcode.play_ball_UI.models.dataAccessObjects;
 
 
 import org.launchcode.play_ball_UI.models.GamePlayer;
+import org.launchcode.play_ball_UI.models.YearGameTypePlayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 //import org.launchcode.play_ball_UI.models.dataAccessObjects.LookupDataAccessObject;
@@ -19,7 +20,7 @@ public class GamePlayerDataAccessObject {
 
     private static Map<String, String> lookupData = new HashMap<>();
 
-    public Iterable<GamePlayer> getGamesPlayers(int gameYear, String gameId, String gameVisitingTeamId, String gameHomeTeamId, String playerId) {
+    public Iterable<GamePlayer> getGamesPlayers(int gameYear, String gameId, String gameVisitingTeamId, String gameHomeTeamId, String playerId, String option, String sortKey) {
 
         if (lookupData.isEmpty())  {
             lookupData = LookupDataAccessObject.getLookupData(entityManager);
@@ -83,7 +84,12 @@ public class GamePlayerDataAccessObject {
             gamePlayer.setPlayerVisitHome((Integer) row[20]);
             gamePlayer.setPlayerVisitHomeText(lookupData.get("visit_home" + row[20].toString()));
 
-            gamePlayer.setPlayerBattingOrder((Integer) row[21]);
+            if ((Integer) row[21] == 0) {
+                gamePlayer.setPlayerBattingOrder(10);
+            }
+            else {
+                gamePlayer.setPlayerBattingOrder((Integer) row[21]);
+            }
 
             gamePlayer.setPlayerFieldPosition((Integer) row[22]);
             gamePlayer.setPlayerFieldPositionText(lookupData.get("field_position" + row[22].toString()));
@@ -91,14 +97,100 @@ public class GamePlayerDataAccessObject {
             gamesPlayers.add(gamePlayer);
         }
 
-//        return entityManager.createNamedStoredProcedureQuery("get-games-players")
-//                .setParameter("game_year", gameYear)
-//                .setParameter("game_id", gameId)
-//                .setParameter("game_visiting_team", gameVisitingTeamId)
-//                .setParameter("game_home_team", gameHomeTeamId)
-//                .setParameter("player_id", playerId)
-//                .getResultList();
+        if (sortKey != "") {
+            gamesPlayers = getSortedGamesPlayers(gamesPlayers, option, sortKey);
+        }
 
         return  gamesPlayers;
+    }
+
+
+    private ArrayList<GamePlayer> getSortedGamesPlayers(ArrayList<GamePlayer> gamesPlayers , String option, String firstSortKey) {
+
+        if (option.equals("game")) {        // sort game data
+            if (firstSortKey.equals("PLAYER_NAME")) {
+                gamesPlayers.sort(Comparator.comparing(GamePlayer :: getPlayerLastName)
+                        .thenComparing(GamePlayer :: getPlayerFirstName)
+                        .thenComparing(GamePlayer :: getPlayerVisitHome));
+            }
+            else if (firstSortKey.equals("BATS")) {
+                gamesPlayers.sort(Comparator.comparing(GamePlayer :: getPlayerBats)
+                        .thenComparing(GamePlayer :: getPlayerLastName)
+                        .thenComparing(GamePlayer :: getPlayerFirstName)
+                        .thenComparing(GamePlayer :: getPlayerVisitHome));
+            }
+            else if (firstSortKey.equals("THROWS")) {
+                gamesPlayers.sort(Comparator.comparing(GamePlayer :: getPlayerThrows)
+                        .thenComparing(GamePlayer :: getPlayerLastName)
+                        .thenComparing(GamePlayer :: getPlayerFirstName)
+                        .thenComparing(GamePlayer :: getPlayerVisitHome));
+            }
+            else if (firstSortKey.equals("FIELD_POSITION")) {
+                gamesPlayers.sort(Comparator.comparing(GamePlayer :: getPlayerFieldPosition)
+                    .thenComparing(GamePlayer :: getPlayerLastName)
+                    .thenComparing(GamePlayer :: getPlayerFirstName)
+                    .thenComparing(GamePlayer :: getPlayerVisitHome));
+            }
+            else if (firstSortKey.equals("BATTING_ORDER")) {
+                gamesPlayers.sort(Comparator.comparing(GamePlayer :: getPlayerBattingOrder)
+                    .thenComparing(GamePlayer :: getPlayerVisitHome)
+                    .thenComparing(GamePlayer :: getPlayerStartSub)
+                    .thenComparing(GamePlayer :: getPlayerLastName)
+                    .thenComparing(GamePlayer :: getPlayerFirstName));
+            }
+            else {                      // default sort order -- batting order within start/sub within visit/home
+                gamesPlayers.sort(Comparator.comparing(GamePlayer :: getPlayerVisitHome)
+                    .thenComparing(GamePlayer :: getPlayerStartSub)
+                    .thenComparing(GamePlayer :: getPlayerBattingOrder));
+            }
+        }
+        else {
+             if (firstSortKey.equals("GAME_TYPE")) {
+                 gamesPlayers.sort(Comparator.comparing(GamePlayer :: getGameType)
+                         .thenComparing(GamePlayer :: getDate)
+                         .thenComparing(GamePlayer :: getPlayerVisitHome)
+                         .thenComparing(GamePlayer :: getPlayerBattingOrder));
+            }
+            else if (firstSortKey.equals("GAME_NUMBER")) {
+                 gamesPlayers.sort(Comparator.comparing(GamePlayer :: getGameNum)
+                         .thenComparing(GamePlayer :: getDate)
+                         .thenComparing(GamePlayer :: getPlayerVisitHome)
+                         .thenComparing(GamePlayer :: getPlayerBattingOrder));
+            }
+            else if (firstSortKey.equals("VISITING_TEAM")) {
+                gamesPlayers.sort(Comparator.comparing(GamePlayer :: getVisitingTeamName)
+                        .thenComparing(GamePlayer :: getDate)
+                        .thenComparing(GamePlayer :: getPlayerVisitHome)
+                        .thenComparing(GamePlayer :: getPlayerBattingOrder));
+            }
+            else if (firstSortKey.equals("HOME_TEAM")) {
+                 gamesPlayers.sort(Comparator.comparing(GamePlayer :: getHomeTeamName)
+                         .thenComparing(GamePlayer :: getDate)
+                         .thenComparing(GamePlayer :: getPlayerVisitHome)
+                         .thenComparing(GamePlayer :: getPlayerBattingOrder));
+            }
+            else if (firstSortKey.equals("PLAYER_NAME")) {
+                 gamesPlayers.sort(Comparator.comparing(GamePlayer :: getPlayerLastName)
+                         .thenComparing(GamePlayer :: getPlayerFirstName)
+                         .thenComparing(GamePlayer :: getPlayerVisitHome));
+             }
+            else if (firstSortKey.equals("FIELD_POSITION")) {
+                 gamesPlayers.sort(Comparator.comparing(GamePlayer :: getPlayerFieldPosition)
+                         .thenComparing(GamePlayer :: getDate)
+                         .thenComparing(GamePlayer :: getPlayerVisitHome)
+                         .thenComparing(GamePlayer :: getPlayerBattingOrder));
+             }
+            else if (firstSortKey.equals("BATTING_ORDER")) {
+                 gamesPlayers.sort(Comparator.comparing(GamePlayer :: getPlayerBattingOrder)
+                         .thenComparing(GamePlayer :: getDate)
+                         .thenComparing(GamePlayer :: getPlayerVisitHome));
+             }
+            else {
+                 gamesPlayers.sort(Comparator.comparing(GamePlayer :: getDate)
+                         .thenComparing(GamePlayer :: getPlayerVisitHome)
+                         .thenComparing(GamePlayer :: getPlayerBattingOrder));
+            }
+        }
+        return gamesPlayers;
     }
 }

@@ -15,6 +15,9 @@ My project wil then provide a simple UI that allows a user to query
 - for a specific game and view information for the players of that game
 - for a specific player and view information for the games for that player
 
+- player data for a game can be sorted by clicking on the grid column header
+- game data for a player can be sorted by clicking on the grid column header
+
 Data for the regular season, wild card, division championship, league championship, and world series games will be loaded for the 1982 and 2015 major league seasons.
 
 My project also requires the user to log in so that user information such as email address can be collected.

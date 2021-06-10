@@ -13,8 +13,8 @@ import java.util.Objects;
                 @StoredProcedureParameter(mode= ParameterMode.IN, name= "player_id", type= String.class)
         })
 
-
-@NamedStoredProcedureQuery(name= "get-lookup-data", procedureName= "play_ball.GetLookupData")
+// consider moving to a Lookup class, out of GamePlayer
+//@NamedStoredProcedureQuery(name= "get-lookup-data", procedureName= "play_ball.GetLookupData")
 
 public class GamePlayer {
 

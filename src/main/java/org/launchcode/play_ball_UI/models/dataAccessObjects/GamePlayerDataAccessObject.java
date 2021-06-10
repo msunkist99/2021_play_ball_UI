@@ -18,12 +18,10 @@ public class GamePlayerDataAccessObject {
     @Autowired
     private EntityManager entityManager;
 
-    private static Map<String, String> lookupData = new HashMap<>();
-
     public Iterable<GamePlayer> getGamesPlayers(int gameYear, String gameId, String gameVisitingTeamId, String gameHomeTeamId, String playerId, String option, String sortKey) {
 
-        if (lookupData.isEmpty())  {
-            lookupData = LookupDataAccessObject.getLookupData(entityManager);
+        if (LookupDataAccessObject.lookupData.isEmpty())  {
+            LookupDataAccessObject.getLookupData(entityManager);
         }
 
         List<Object[]> objectList = entityManager.createNamedStoredProcedureQuery("get-games-players")
@@ -45,44 +43,44 @@ public class GamePlayerDataAccessObject {
 
             gamePlayer.setGameType((Character) row[3]);
             //gamePlayer.setGameTypeText(row[4].toString());
-            gamePlayer.setGameTypeText(lookupData.get( "game_type" + row[3].toString()));
+            gamePlayer.setGameTypeText(LookupDataAccessObject.lookupData.get( "game_type" + row[3].toString()));
 
             gamePlayer.setDayNight((Character) row[4]);
             //gamePlayer.setDayNightText(row[4].toString());
-            gamePlayer.setDayNightText(lookupData.get("day_night" + row[4].toString()));
+            gamePlayer.setDayNightText(LookupDataAccessObject.lookupData.get("day_night" + row[4].toString()));
 
             gamePlayer.setGameNum((Integer) row[5]);
-            gamePlayer.setGameNumText(lookupData.get("game_num" + row[5].toString()));
+            gamePlayer.setGameNumText(LookupDataAccessObject.lookupData.get("game_num" + row[5].toString()));
 
             gamePlayer.setHomeTeam(row[6].toString());
             gamePlayer.setHomeTeamName(row[7].toString());
             gamePlayer.setHomeTeamCity(row[8].toString());
 
             gamePlayer.setHomeTeamLeague((Character) row[9]);
-            gamePlayer.setHomeTeamLeagueText(lookupData.get("league" + row[9].toString()));
+            gamePlayer.setHomeTeamLeagueText(LookupDataAccessObject.lookupData.get("league" + row[9].toString()));
 
             gamePlayer.setVisitingTeam(row[10].toString());
             gamePlayer.setVisitingTeamName(row[11].toString());
             gamePlayer.setVisitingTeamCity(row[12].toString());
 
             gamePlayer.setVisitingTeamLeague((Character) row[13]);
-            gamePlayer.setVisitingTeamLeagueText(lookupData.get("league" + row[13].toString()));
+            gamePlayer.setVisitingTeamLeagueText(LookupDataAccessObject.lookupData.get("league" + row[13].toString()));
 
             gamePlayer.setPlayerId(row[14].toString());
             gamePlayer.setPlayerLastName(row[15].toString());
             gamePlayer.setPlayerFirstName(row[16].toString());
 
             gamePlayer.setPlayerBats((Character) row[17]);
-            gamePlayer.setPlayerBatsText(lookupData.get("left_right" + row[17].toString()));
+            gamePlayer.setPlayerBatsText(LookupDataAccessObject.lookupData.get("left_right" + row[17].toString()));
 
             gamePlayer.setPlayerThrows((Character) row[18]);
-            gamePlayer.setPlayerThrowsText(lookupData.get("left_right" + row[18].toString()));
+            gamePlayer.setPlayerThrowsText(LookupDataAccessObject.lookupData.get("left_right" + row[18].toString()));
 
             gamePlayer.setPlayerStartSub((Integer) row[19]);
-            gamePlayer.setPlayerStartSubText(lookupData.get("start_sub" + row[19].toString()));
+            gamePlayer.setPlayerStartSubText(LookupDataAccessObject.lookupData.get("start_sub" + row[19].toString()));
 
             gamePlayer.setPlayerVisitHome((Integer) row[20]);
-            gamePlayer.setPlayerVisitHomeText(lookupData.get("visit_home" + row[20].toString()));
+            gamePlayer.setPlayerVisitHomeText(LookupDataAccessObject.lookupData.get("visit_home" + row[20].toString()));
 
             if ((Integer) row[21] == 0) {
                 gamePlayer.setPlayerBattingOrder(10);
@@ -92,7 +90,7 @@ public class GamePlayerDataAccessObject {
             }
 
             gamePlayer.setPlayerFieldPosition((Integer) row[22]);
-            gamePlayer.setPlayerFieldPositionText(lookupData.get("field_position" + row[22].toString()));
+            gamePlayer.setPlayerFieldPositionText(LookupDataAccessObject.lookupData.get("field_position" + row[22].toString()));
 
             gamesPlayers.add(gamePlayer);
         }

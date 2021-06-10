@@ -12,17 +12,18 @@ import java.util.Map;
 @Repository
 public class LookupDataAccessObject {
 
-    public static Map<String, String> getLookupData(EntityManager entityManager) {
+    public static Map<String, String> lookupData = new HashMap<>();
+
+    public static void getLookupData(EntityManager entityManager) {
 
         List<Object[]> objectList = entityManager.createNamedStoredProcedureQuery("get-lookup-data")
                 .getResultList();
 
-        Map<String, String> lookupData = new HashMap<>();
+        //Map<String, String> lookupData = new HashMap<>();
 
         for (Object[] row : objectList) {
             lookupData.put(row[0].toString() + row[1].toString(), row[2].toString());
         }
 
-        return lookupData;
     }
 }

@@ -18,8 +18,8 @@ public class GameDetail {
         private String gameNumText;
         private String dayOfWeek;                             // 3
         private String startTime;
-        private String dhUsedFlag;            // T/F          // 5
-        private String dayNight;              // D/N
+        private char dhUsedFlag;            // T/F          // 5
+        private char dayNight;              // D/N
         private String dayNightText;
         private String visitTeam;
         private String visitTeamName;
@@ -38,7 +38,7 @@ public class GameDetail {
         private String ballparkState;
         private String ballparkStartDate;
         private String ballparkEndDate;
-        private String ballparkLeague;
+        private char ballparkLeague;
         private String ballparkLeagueText;
         private String ballparkNotes;
 
@@ -63,28 +63,34 @@ public class GameDetail {
         private String playerHomeStartingPitcherThrowsText;
 
         private String umpireIdHomePlate;
-        private String umpireIdHomePlateLastName;
-        private String umpireIdHomePlateFirstName;
+        private String umpireHomePlateLastName;
+        private String umpireHomePlateFirstName;
+        private String umpireHomePlateDebutDate;
 
         private String umpireIdFirstBase;
-        private String umpireIdFirstBaseLastName;
-        private String umpireIdFirstBaseFirstName;
+        private String umpireFirstBaseLastName;
+        private String umpireFirstBaseFirstName;
+        private String umpireFirstBaseDebutDate;
 
         private String umpireIdSecondBase;
-        private String umpireIdSecondBaseLastName;
-        private String umpireIdSecondBaseFirstName;
+        private String umpireSecondBaseLastName;
+        private String umpireSecondBaseFirstName;
+        private String umpireSecondBaseDebutDate;
 
         private String umpireIdThirdBase;                     // 15
-        private String umpireIdThirdBaseLastName;
-        private String umpireIdThirdBaseFirstName;
+        private String umpireThirdBaseLastName;
+        private String umpireThirdBaseFirstName;
+        private String umpireThirdBaseDebutDate;
 
         private String umpireIdLeftField;
-        private String umpireIdLeftFieldLastName;
-        private String umpireIdLeftFieldFirstName;
+        private String umpireLeftFieldLastName;
+        private String umpireLeftFieldFirstName;
+        private String umpireLeftFieldDebutDate;
 
         private String umpireIdRightField;
-        private String umpireIdRightFieldLastName;
-        private String umpireIdRightFieldFirstName;
+        private String umpireRightFieldLastName;
+        private String umpireRightFieldFirstName;
+        private String umpireRightFieldDebutDate;
 
         private int gameAttendance;
         private String psScorer;
@@ -95,14 +101,14 @@ public class GameDetail {
         private String howScored;
         private String pitchesEntered;                        // 25
         private int gameTemperature;
-        private String gameWindDirection;
+        private char gameWindDirection;
         private String gameWindDirectionText;
         private int gameWindSpeed;
-        private String gameFieldCondition;
+        private char gameFieldCondition;
         private String gameFieldConditionText;
-        private String gamePrecipitation;                     // 30
+        private char gamePrecipitation;                     // 30
         private String gamePrecipitationText;
-        private String gameSky;
+        private char gameSky;
         private String gameSkyText;
         private String gameTime;
         private int numberOfInnings;
@@ -146,8 +152,8 @@ public class GameDetail {
         private String playerSaveForThrowsText;
 
         private String playerIdWinningRbi;                // 45
-        private int playerPositionWinningRbi;
-        private String playerPositionWinningRbiText;
+        //private int playerPositionWinningRbi;
+        //private String playerPositionWinningRbiText;
         private String playerWinningRbiLastName;
         private String playerWinningRbiFirstName;
         private char playerWinningRbiBats;
@@ -213,6 +219,10 @@ public class GameDetail {
         private char playerHomeFinalPitcherThrows;
         private String playerHomeFinalPitcherThrowsText;
 
+        private int year;
+        private char gameType;
+        private String gameTypeText;
+
         public String getGameId() {
                 return gameId;
         }
@@ -261,19 +271,19 @@ public class GameDetail {
                 this.startTime = startTime;
         }
 
-        public String getDhUsedFlag() {
+        public char getDhUsedFlag() {
                 return dhUsedFlag;
         }
 
-        public void setDhUsedFlag(String dhUsedFlag) {
+        public void setDhUsedFlag(char dhUsedFlag) {
                 this.dhUsedFlag = dhUsedFlag;
         }
 
-        public String getDayNight() {
+        public char getDayNight() {
                 return dayNight;
         }
 
-        public void setDayNight(String dayNight) {
+        public void setDayNight(char dayNight) {
                 this.dayNight = dayNight;
         }
 
@@ -421,11 +431,11 @@ public class GameDetail {
                 this.ballparkEndDate = ballparkEndDate;
         }
 
-        public String getBallparkLeague() {
+        public char getBallparkLeague() {
                 return ballparkLeague;
         }
 
-        public void setBallparkLeague(String ballparkLeague) {
+        public void setBallparkLeague(char ballparkLeague) {
                 this.ballparkLeague = ballparkLeague;
         }
 
@@ -597,20 +607,20 @@ public class GameDetail {
                 this.umpireIdHomePlate = umpireIdHomePlate;
         }
 
-        public String getUmpireIdHomePlateLastName() {
-                return umpireIdHomePlateLastName;
+        public String getUmpireHomePlateLastName() {
+                return umpireHomePlateLastName;
         }
 
-        public void setUmpireIdHomePlateLastName(String umpireIdHomePlateLastName) {
-                this.umpireIdHomePlateLastName = umpireIdHomePlateLastName;
+        public void setUmpireHomePlateLastName(String umpireHomePlateLastName) {
+                this.umpireHomePlateLastName = umpireHomePlateLastName;
         }
 
-        public String getUmpireIdHomePlateFirstName() {
-                return umpireIdHomePlateFirstName;
+        public String getUmpireHomePlateFirstName() {
+                return umpireHomePlateFirstName;
         }
 
-        public void setUmpireIdHomePlateFirstName(String umpireIdHomePlateFirstName) {
-                this.umpireIdHomePlateFirstName = umpireIdHomePlateFirstName;
+        public void setUmpireHomePlateFirstName(String umpireHomePlateFirstName) {
+                this.umpireHomePlateFirstName = umpireHomePlateFirstName;
         }
 
         public String getUmpireIdFirstBase() {
@@ -621,20 +631,20 @@ public class GameDetail {
                 this.umpireIdFirstBase = umpireIdFirstBase;
         }
 
-        public String getUmpireIdFirstBaseLastName() {
-                return umpireIdFirstBaseLastName;
+        public String getUmpireFirstBaseLastName() {
+                return umpireFirstBaseLastName;
         }
 
-        public void setUmpireIdFirstBaseLastName(String umpireIdFirstBaseLastName) {
-                this.umpireIdFirstBaseLastName = umpireIdFirstBaseLastName;
+        public void setUmpireFirstBaseLastName(String umpireFirstBaseLastName) {
+                this.umpireFirstBaseLastName = umpireFirstBaseLastName;
         }
 
-        public String getUmpireIdFirstBaseFirstName() {
-                return umpireIdFirstBaseFirstName;
+        public String getUmpireFirstBaseFirstName() {
+                return umpireFirstBaseFirstName;
         }
 
-        public void setUmpireIdFirstBaseFirstName(String umpireIdFirstBaseFirstName) {
-                this.umpireIdFirstBaseFirstName = umpireIdFirstBaseFirstName;
+        public void setUmpireFirstBaseFirstName(String umpireFirstBaseFirstName) {
+                this.umpireFirstBaseFirstName = umpireFirstBaseFirstName;
         }
 
         public String getUmpireIdSecondBase() {
@@ -645,20 +655,20 @@ public class GameDetail {
                 this.umpireIdSecondBase = umpireIdSecondBase;
         }
 
-        public String getUmpireIdSecondBaseLastName() {
-                return umpireIdSecondBaseLastName;
+        public String getUmpireSecondBaseLastName() {
+                return umpireSecondBaseLastName;
         }
 
-        public void setUmpireIdSecondBaseLastName(String umpireIdSecondBaseLastName) {
-                this.umpireIdSecondBaseLastName = umpireIdSecondBaseLastName;
+        public void setUmpireSecondBaseLastName(String umpireSecondBaseLastName) {
+                this.umpireSecondBaseLastName = umpireSecondBaseLastName;
         }
 
-        public String getUmpireIdSecondBaseFirstName() {
-                return umpireIdSecondBaseFirstName;
+        public String getUmpireSecondBaseFirstName() {
+                return umpireSecondBaseFirstName;
         }
 
-        public void setUmpireIdSecondBaseFirstName(String umpireIdSecondBaseFirstName) {
-                this.umpireIdSecondBaseFirstName = umpireIdSecondBaseFirstName;
+        public void setUmpireSecondBaseFirstName(String umpireSecondBaseFirstName) {
+                this.umpireSecondBaseFirstName = umpireSecondBaseFirstName;
         }
 
         public String getUmpireIdThirdBase() {
@@ -669,20 +679,20 @@ public class GameDetail {
                 this.umpireIdThirdBase = umpireIdThirdBase;
         }
 
-        public String getUmpireIdThirdBaseLastName() {
-                return umpireIdThirdBaseLastName;
+        public String getUmpireThirdBaseLastName() {
+                return umpireThirdBaseLastName;
         }
 
-        public void setUmpireIdThirdBaseLastName(String umpireIdThirdBaseLastName) {
-                this.umpireIdThirdBaseLastName = umpireIdThirdBaseLastName;
+        public void setUmpireThirdBaseLastName(String umpireThirdBaseLastName) {
+                this.umpireThirdBaseLastName = umpireThirdBaseLastName;
         }
 
-        public String getUmpireIdThirdBaseFirstName() {
-                return umpireIdThirdBaseFirstName;
+        public String getUmpireThirdBaseFirstName() {
+                return umpireThirdBaseFirstName;
         }
 
-        public void setUmpireIdThirdBaseFirstName(String umpireIdThirdBaseFirstName) {
-                this.umpireIdThirdBaseFirstName = umpireIdThirdBaseFirstName;
+        public void setUmpireThirdBaseFirstName(String umpireThirdBaseFirstName) {
+                this.umpireThirdBaseFirstName = umpireThirdBaseFirstName;
         }
 
         public String getUmpireIdLeftField() {
@@ -693,20 +703,20 @@ public class GameDetail {
                 this.umpireIdLeftField = umpireIdLeftField;
         }
 
-        public String getUmpireIdLeftFieldLastName() {
-                return umpireIdLeftFieldLastName;
+        public String getUmpireLeftFieldLastName() {
+                return umpireLeftFieldLastName;
         }
 
-        public void setUmpireIdLeftFieldLastName(String umpireIdLeftFieldLastName) {
-                this.umpireIdLeftFieldLastName = umpireIdLeftFieldLastName;
+        public void setUmpireLeftFieldLastName(String umpireLeftFieldLastName) {
+                this.umpireLeftFieldLastName = umpireLeftFieldLastName;
         }
 
-        public String getUmpireIdLeftFieldFirstName() {
-                return umpireIdLeftFieldFirstName;
+        public String getUmpireLeftFieldFirstName() {
+                return umpireLeftFieldFirstName;
         }
 
-        public void setUmpireIdLeftFieldFirstName(String umpireIdLeftFieldFirstName) {
-                this.umpireIdLeftFieldFirstName = umpireIdLeftFieldFirstName;
+        public void setUmpireLeftFieldFirstName(String umpireLeftFieldFirstName) {
+                this.umpireLeftFieldFirstName = umpireLeftFieldFirstName;
         }
 
         public String getUmpireIdRightField() {
@@ -717,20 +727,20 @@ public class GameDetail {
                 this.umpireIdRightField = umpireIdRightField;
         }
 
-        public String getUmpireIdRightFieldLastName() {
-                return umpireIdRightFieldLastName;
+        public String getUmpireRightFieldLastName() {
+                return umpireRightFieldLastName;
         }
 
-        public void setUmpireIdRightFieldLastName(String umpireIdRightFieldLastName) {
-                this.umpireIdRightFieldLastName = umpireIdRightFieldLastName;
+        public void setUmpireRightFieldLastName(String umpireRightFieldLastName) {
+                this.umpireRightFieldLastName = umpireRightFieldLastName;
         }
 
-        public String getUmpireIdRightFieldFirstName() {
-                return umpireIdRightFieldFirstName;
+        public String getUmpireRightFieldFirstName() {
+                return umpireRightFieldFirstName;
         }
 
-        public void setUmpireIdRightFieldFirstName(String umpireIdRightFieldFirstName) {
-                this.umpireIdRightFieldFirstName = umpireIdRightFieldFirstName;
+        public void setUmpireRightFieldFirstName(String umpireRightFieldFirstName) {
+                this.umpireRightFieldFirstName = umpireRightFieldFirstName;
         }
 
         public int getGameAttendance() {
@@ -805,11 +815,11 @@ public class GameDetail {
                 this.gameTemperature = gameTemperature;
         }
 
-        public String getGameWindDirection() {
+        public char getGameWindDirection() {
                 return gameWindDirection;
         }
 
-        public void setGameWindDirection(String gameWindDirection) {
+        public void setGameWindDirection(char gameWindDirection) {
                 this.gameWindDirection = gameWindDirection;
         }
 
@@ -829,11 +839,11 @@ public class GameDetail {
                 this.gameWindSpeed = gameWindSpeed;
         }
 
-        public String getGameFieldCondition() {
+        public char getGameFieldCondition() {
                 return gameFieldCondition;
         }
 
-        public void setGameFieldCondition(String gameFieldCondition) {
+        public void setGameFieldCondition(char gameFieldCondition) {
                 this.gameFieldCondition = gameFieldCondition;
         }
 
@@ -845,11 +855,11 @@ public class GameDetail {
                 this.gameFieldConditionText = gameFieldConditionText;
         }
 
-        public String getGamePrecipitation() {
+        public char getGamePrecipitation() {
                 return gamePrecipitation;
         }
 
-        public void setGamePrecipitation(String gamePrecipitation) {
+        public void setGamePrecipitation(char gamePrecipitation) {
                 this.gamePrecipitation = gamePrecipitation;
         }
 
@@ -861,11 +871,11 @@ public class GameDetail {
                 this.gamePrecipitationText = gamePrecipitationText;
         }
 
-        public String getGameSky() {
+        public char getGameSky() {
                 return gameSky;
         }
 
-        public void setGameSky(String gameSky) {
+        public void setGameSky(char gameSky) {
                 this.gameSky = gameSky;
         }
 
@@ -1181,21 +1191,21 @@ public class GameDetail {
                 this.playerIdWinningRbi = playerIdWinningRbi;
         }
 
-        public int getPlayerPositionWinningRbi() {
-                return playerPositionWinningRbi;
-        }
+//        public int getPlayerPositionWinningRbi() {
+//                return playerPositionWinningRbi;
+//        }
+//
+//        public void setPlayerPositionWinningRbi(int playerPositionWinningRbi) {
+//                this.playerPositionWinningRbi = playerPositionWinningRbi;
+//        }
 
-        public void setPlayerPositionWinningRbi(int playerPositionWinningRbi) {
-                this.playerPositionWinningRbi = playerPositionWinningRbi;
-        }
-
-        public String getPlayerPositionWinningRbiText() {
-                return playerPositionWinningRbiText;
-        }
-
-        public void setPlayerPositionWinningRbiText(String playerPositionWinningRbiText) {
-                this.playerPositionWinningRbiText = playerPositionWinningRbiText;
-        }
+//        public String getPlayerPositionWinningRbiText() {
+//                return playerPositionWinningRbiText;
+//        }
+//
+//        public void setPlayerPositionWinningRbiText(String playerPositionWinningRbiText) {
+//                this.playerPositionWinningRbiText = playerPositionWinningRbiText;
+//        }
 
         public String getPlayerWinningRbiLastName() {
                 return playerWinningRbiLastName;
@@ -1389,6 +1399,78 @@ public class GameDetail {
                 this.playerHomeFinalPitcherThrowsText = playerHomeFinalPitcherThrowsText;
         }
 
+        public int getYear() {
+                return year;
+        }
+
+        public void setYear(int year) {
+                this.year = year;
+        }
+
+        public char getGameType() {
+                return gameType;
+        }
+
+        public void setGameType(char gameType) {
+                this.gameType = gameType;
+        }
+
+        public String getGameTypeText() {
+                return gameTypeText;
+        }
+
+        public String getUmpireHomePlateDebutDate() {
+                return umpireHomePlateDebutDate;
+        }
+
+        public void setUmpireHomePlateDebutDate(String umpireHomePlateDebutDate) {
+                this.umpireHomePlateDebutDate = umpireHomePlateDebutDate;
+        }
+
+        public String getUmpireFirstBaseDebutDate() {
+                return umpireFirstBaseDebutDate;
+        }
+
+        public void setUmpireFirstBaseDebutDate(String umpireFirstBaseDebutDate) {
+                this.umpireFirstBaseDebutDate = umpireFirstBaseDebutDate;
+        }
+
+        public String getUmpireSecondBaseDebutDate() {
+                return umpireSecondBaseDebutDate;
+        }
+
+        public void setUmpireSecondBaseDebutDate(String umpireSecondBaseDebutDate) {
+                this.umpireSecondBaseDebutDate = umpireSecondBaseDebutDate;
+        }
+
+        public String getUmpireThirdBaseDebutDate() {
+                return umpireThirdBaseDebutDate;
+        }
+
+        public void setUmpireThirdBaseDebutDate(String umpireThirdBaseDebutDate) {
+                this.umpireThirdBaseDebutDate = umpireThirdBaseDebutDate;
+        }
+
+        public String getUmpireLeftFieldDebutDate() {
+                return umpireLeftFieldDebutDate;
+        }
+
+        public void setUmpireLeftFieldDebutDate(String umpireLeftFieldDebutDate) {
+                this.umpireLeftFieldDebutDate = umpireLeftFieldDebutDate;
+        }
+
+        public String getUmpireRightFieldDebutDate() {
+                return umpireRightFieldDebutDate;
+        }
+
+        public void setUmpireRightFieldDebutDate(String umpireRightFieldDebutDate) {
+                this.umpireRightFieldDebutDate = umpireRightFieldDebutDate;
+        }
+
+        public void setGameTypeText(String gameTypeText) {
+                this.gameTypeText = gameTypeText;
+        }
+
         @Override
         public boolean equals(Object o) {
                 if (this == o) return true;
@@ -1411,8 +1493,8 @@ public class GameDetail {
                         ", gameNumText='" + gameNumText + '\'' +
                         ", dayOfWeek='" + dayOfWeek + '\'' +
                         ", startTime='" + startTime + '\'' +
-                        ", dhUsedFlag='" + dhUsedFlag + '\'' +
-                        ", dayNight='" + dayNight + '\'' +
+                        ", dhUsedFlag=" + dhUsedFlag +
+                        ", dayNight=" + dayNight +
                         ", dayNightText='" + dayNightText + '\'' +
                         ", visitTeam='" + visitTeam + '\'' +
                         ", visitTeamName='" + visitTeamName + '\'' +
@@ -1431,7 +1513,7 @@ public class GameDetail {
                         ", ballparkState='" + ballparkState + '\'' +
                         ", ballparkStartDate='" + ballparkStartDate + '\'' +
                         ", ballparkEndDate='" + ballparkEndDate + '\'' +
-                        ", ballparkLeague='" + ballparkLeague + '\'' +
+                        ", ballparkLeague=" + ballparkLeague +
                         ", ballparkLeagueText='" + ballparkLeagueText + '\'' +
                         ", ballparkNotes='" + ballparkNotes + '\'' +
                         ", playerIdVisitStartingPitcher='" + playerIdVisitStartingPitcher + '\'' +
@@ -1453,23 +1535,29 @@ public class GameDetail {
                         ", playerHomeStartingPitcherThrows=" + playerHomeStartingPitcherThrows +
                         ", playerHomeStartingPitcherThrowsText='" + playerHomeStartingPitcherThrowsText + '\'' +
                         ", umpireIdHomePlate='" + umpireIdHomePlate + '\'' +
-                        ", umpireIdHomePlateLastName='" + umpireIdHomePlateLastName + '\'' +
-                        ", umpireIdHomePlateFirstName='" + umpireIdHomePlateFirstName + '\'' +
+                        ", umpireHomePlateLastName='" + umpireHomePlateLastName + '\'' +
+                        ", umpireHomePlateFirstName='" + umpireHomePlateFirstName + '\'' +
+                        ", umpireHomePlateDebutDate='" + umpireHomePlateDebutDate + '\'' +
                         ", umpireIdFirstBase='" + umpireIdFirstBase + '\'' +
-                        ", umpireIdFirstBaseLastName='" + umpireIdFirstBaseLastName + '\'' +
-                        ", umpireIdFirstBaseFirstName='" + umpireIdFirstBaseFirstName + '\'' +
+                        ", umpireFirstBaseLastName='" + umpireFirstBaseLastName + '\'' +
+                        ", umpireFirstBaseFirstName='" + umpireFirstBaseFirstName + '\'' +
+                        ", umpireFirstBaseDebutDate='" + umpireFirstBaseDebutDate + '\'' +
                         ", umpireIdSecondBase='" + umpireIdSecondBase + '\'' +
-                        ", umpireIdSecondBaseLastName='" + umpireIdSecondBaseLastName + '\'' +
-                        ", umpireIdSecondBaseFirstName='" + umpireIdSecondBaseFirstName + '\'' +
+                        ", umpireSecondBaseLastName='" + umpireSecondBaseLastName + '\'' +
+                        ", umpireSecondBaseFirstName='" + umpireSecondBaseFirstName + '\'' +
+                        ", umpireSecondBaseDebutDate='" + umpireSecondBaseDebutDate + '\'' +
                         ", umpireIdThirdBase='" + umpireIdThirdBase + '\'' +
-                        ", umpireIdThirdBaseLastName='" + umpireIdThirdBaseLastName + '\'' +
-                        ", umpireIdThirdBaseFirstName='" + umpireIdThirdBaseFirstName + '\'' +
+                        ", umpireThirdBaseLastName='" + umpireThirdBaseLastName + '\'' +
+                        ", umpireThirdBaseFirstName='" + umpireThirdBaseFirstName + '\'' +
+                        ", umpireThirdBaseDebutDate='" + umpireThirdBaseDebutDate + '\'' +
                         ", umpireIdLeftField='" + umpireIdLeftField + '\'' +
-                        ", umpireIdLeftFieldLastName='" + umpireIdLeftFieldLastName + '\'' +
-                        ", umpireIdLeftFieldFirstName='" + umpireIdLeftFieldFirstName + '\'' +
+                        ", umpireLeftFieldLastName='" + umpireLeftFieldLastName + '\'' +
+                        ", umpireLeftFieldFirstName='" + umpireLeftFieldFirstName + '\'' +
+                        ", umpireLeftFieldDebutDate='" + umpireLeftFieldDebutDate + '\'' +
                         ", umpireIdRightField='" + umpireIdRightField + '\'' +
-                        ", umpireIdRightFieldLastName='" + umpireIdRightFieldLastName + '\'' +
-                        ", umpireIdRightFieldFirstName='" + umpireIdRightFieldFirstName + '\'' +
+                        ", umpireRightFieldLastName='" + umpireRightFieldLastName + '\'' +
+                        ", umpireRightFieldFirstName='" + umpireRightFieldFirstName + '\'' +
+                        ", umpireRightFieldDebutDate='" + umpireRightFieldDebutDate + '\'' +
                         ", gameAttendance=" + gameAttendance +
                         ", psScorer='" + psScorer + '\'' +
                         ", translator='" + translator + '\'' +
@@ -1479,14 +1567,14 @@ public class GameDetail {
                         ", howScored='" + howScored + '\'' +
                         ", pitchesEntered='" + pitchesEntered + '\'' +
                         ", gameTemperature=" + gameTemperature +
-                        ", gameWindDirection='" + gameWindDirection + '\'' +
+                        ", gameWindDirection=" + gameWindDirection +
                         ", gameWindDirectionText='" + gameWindDirectionText + '\'' +
                         ", gameWindSpeed=" + gameWindSpeed +
-                        ", gameFieldCondition='" + gameFieldCondition + '\'' +
+                        ", gameFieldCondition=" + gameFieldCondition +
                         ", gameFieldConditionText='" + gameFieldConditionText + '\'' +
-                        ", gamePrecipitation='" + gamePrecipitation + '\'' +
+                        ", gamePrecipitation=" + gamePrecipitation +
                         ", gamePrecipitationText='" + gamePrecipitationText + '\'' +
-                        ", gameSky='" + gameSky + '\'' +
+                        ", gameSky=" + gameSky +
                         ", gameSkyText='" + gameSkyText + '\'' +
                         ", gameTime='" + gameTime + '\'' +
                         ", numberOfInnings=" + numberOfInnings +
@@ -1526,8 +1614,6 @@ public class GameDetail {
                         ", playerSaveForThrows=" + playerSaveForThrows +
                         ", playerSaveForThrowsText='" + playerSaveForThrowsText + '\'' +
                         ", playerIdWinningRbi='" + playerIdWinningRbi + '\'' +
-                        ", playerPositionWinningRbiFor=" + playerPositionWinningRbi +
-                        ", playerPositionWinningRbiText='" + playerPositionWinningRbiText + '\'' +
                         ", playerWinningRbiLastName='" + playerWinningRbiLastName + '\'' +
                         ", playerWinningRbiFirstName='" + playerWinningRbiFirstName + '\'' +
                         ", playerWinningRbiBats=" + playerWinningRbiBats +
@@ -1552,6 +1638,9 @@ public class GameDetail {
                         ", playerHomeFinalPitcherBatsText='" + playerHomeFinalPitcherBatsText + '\'' +
                         ", playerHomeFinalPitcherThrows=" + playerHomeFinalPitcherThrows +
                         ", playerHomeFinalPitcherThrowsText='" + playerHomeFinalPitcherThrowsText + '\'' +
+                        ", year=" + year +
+                        ", gameType=" + gameType +
+                        ", gameTypeText='" + gameTypeText + '\'' +
                         '}';
         }
 }

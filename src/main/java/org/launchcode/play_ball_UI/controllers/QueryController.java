@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @Controller
 //@RequestMapping(value= "/playball/query")
 public class QueryController {
@@ -25,7 +23,10 @@ public class QueryController {
     YearGameTypePlayerDataAccessObject daoYearGameTypePlayer;
 
     @Autowired
-    GamePlayerDataAccessObject dao;
+    GamePlayerDataAccessObject daoGamePlayer;
+
+    @Autowired
+    GameDetailDataAccessObject daoGameDetail;
 
     @GetMapping(value = "playball/query")
     public String getQuery(Model model) {
@@ -65,7 +66,7 @@ public class QueryController {
 
     @GetMapping(value = "playball/player")
     public String getPlayer(@RequestParam("year") String year, @RequestParam("playerId") String playerId, Model model) {
-        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(Integer.parseInt(year), null, null, null, playerId, null, null);
+        Iterable<GamePlayer> gamesPlayer = daoGamePlayer.getGamesPlayers(Integer.parseInt(year), null, null, null, playerId, null, null);
 
         model.addAttribute("title", "Play Ball - Player");
         model.addAttribute("gamesPlayer", gamesPlayer);
@@ -75,7 +76,7 @@ public class QueryController {
 
     @GetMapping(value = "playball/game")
     public String getGame(@RequestParam("year") String year, @RequestParam("gameId") String gameId, Model model) {
-        Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(Integer.parseInt(year), gameId, null, null, null, null, null);
+        Iterable<GamePlayer> gamesPlayer = daoGamePlayer.getGamesPlayers(Integer.parseInt(year), gameId, null, null, null, null, null);
 
         model.addAttribute("title", "Play Ball - Game");
         model.addAttribute("gamesPlayer", gamesPlayer);
@@ -93,19 +94,29 @@ public class QueryController {
     {
 
         if (option.equals("game")) {
-            Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(Integer.parseInt(year), gameId, null, null, null, option, sortKey);
+            Iterable<GamePlayer> gamesPlayer = daoGamePlayer.getGamesPlayers(Integer.parseInt(year), gameId, null, null, null, option, sortKey);
 
             model.addAttribute("title", "Play Ball - Game");
             model.addAttribute("gamesPlayer", gamesPlayer);
             return "game";
         }
         else {
-            Iterable<GamePlayer> gamesPlayer = dao.getGamesPlayers(Integer.parseInt(year), null, null, null, playerId, option, sortKey);
+            Iterable<GamePlayer> gamesPlayer = daoGamePlayer.getGamesPlayers(Integer.parseInt(year), null, null, null, playerId, option, sortKey);
 
             model.addAttribute("title", "Play Ball - Player");
             model.addAttribute("gamesPlayer", gamesPlayer);
             return "player";
         }
+    }
+
+    @GetMapping(value = "playball/gameDetail")
+    public String getGameDetail(@RequestParam("gameId") String gameId,
+                                Model model) {
+        Iterable<GameDetail> gameDetails = daoGameDetail.getGameDetail(gameId);
+
+        model.addAttribute("title", "Play Ball - Game Details");
+        model.addAttribute("gameDetail", gameDetails.iterator().next());
+        return "gameDetail";
     }
 
 }

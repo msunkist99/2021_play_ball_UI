@@ -12,7 +12,9 @@
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
     <div class="queryResultsHeader1">
-        <label th:text="${gamesPlayer[0].year} + ' - ' + ${#strings.capitalizeWords(gamesPlayer[0].gameTypeText)}"></label>
+        <label th:text="${gamesPlayer[0].year} + ' - ' + ${#strings.capitalizeWords(gamesPlayer[0].gameTypeText)} + ' -- '"></label>
+
+        <a th:href="@{/playball/gameDetail(gameId=${gamesPlayer[0].gameId})}">More Game Detail</a>
         <br>
 
         <div class="queryResultsHeader2">

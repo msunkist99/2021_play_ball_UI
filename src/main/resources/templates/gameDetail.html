@@ -118,23 +118,53 @@
 
             <div class="col-sm-4">
                 <span>Ball Park - </span> <br>
-                <span th:text="${gameDetail.ballparkName} + ' - AKA: ' + ${gameDetail.ballparkAka}"/> <br>
-                <span th:text="'Location: ' + ${gameDetail.ballparkCity} + ', ' + ${gameDetail.ballparkState}"/> <br>
-                <span th:text="'Start Date: ' + ${gameDetail.ballparkStartDate} + '   End Date: ' + ${gameDetail.ballparkEndDate}"/> <br>
-                <span th:text="'League: ' + ${gameDetail.ballparkLeagueText}"/> <br>
-                <span th:text="'Notes: ' + ${gameDetail.ballparkNotes}"/> <br>
-                <br>
-                <span th:text="'Game Time - ' + ${gameDetail.startTime}"></span> <br>
-                <span th:if="${gameDetail.dhUsedFlag=='T'}">Designated Hitter Used - True <br><br></span>
-                <span th:unless="${gameDetail.dhUsedFlag=='T'}">Designated Hitter Used - False <br><br></span>
+                <span th:text="'Name: ' + ${gameDetail.ballparkName} "/> <br>
+                <span th:if="${gameDetail.ballparkAka}!=''">
+                    <span th:text=" 'AKA: ' + ${gameDetail.ballparkAka}"/> <br>
+                </span>
 
-                <span>Umpires: </span> <br>
-                <span th:text="'Home Plate: ' + ${gameDetail.umpireHomePlateLastName} + ', ' + ${gameDetail.umpireHomePlateFirstName} + ',  Debut Date: ' + ${gameDetail.umpireHomePlateDebutDate}"/> <br>
-                <span th:text="'First Base: ' + ${gameDetail.umpireFirstBaseLastName} + ', ' + ${gameDetail.umpireFirstBaseFirstName} + ',  Debut Date: ' + ${gameDetail.umpireFirstBaseDebutDate}"/> <br>
-                <span th:text="'Second Base: ' + ${gameDetail.umpireSecondBaseLastName} + ', ' + ${gameDetail.umpireSecondBaseFirstName} + ',  Debut Date: ' + ${gameDetail.umpireSecondBaseDebutDate}"/> <br>
-                <span th:text="'Third Base: ' + ${gameDetail.umpireThirdBaseLastName} + ', ' + ${gameDetail.umpireThirdBaseFirstName} + ',  Debut Date: ' + ${gameDetail.umpireThirdBaseDebutDate}"/> <br>
-                <span th:text="'Left Field: ' + ${gameDetail.umpireLeftFieldLastName} + ', ' + ${gameDetail.umpireLeftFieldFirstName} + ',  Debut Date: ' + ${gameDetail.umpireLeftFieldDebutDate}"/> <br>
-                <span th:text="'Right Field: ' + ${gameDetail.umpireRightFieldLastName} + ', ' + ${gameDetail.umpireRightFieldFirstName} + ',  Debut Date: ' + ${gameDetail.umpireRightFieldDebutDate}"/> <br>
+                <span th:text="'Location: ' + ${gameDetail.ballparkCity} + ', ' + ${gameDetail.ballparkState}"/> <br>
+
+                <span th:if="${gameDetail.ballparkEndDate}=='' ">
+                    <span th:text="'Start Date: ' + ${gameDetail.ballparkStartDate} "/>
+                </span>
+                <span th:if="${gameDetail.ballparkEndDate}!='' ">
+                    <span th:text="'Start Date: ' + ${gameDetail.ballparkStartDate} + ' / End Date: ' + ${gameDetail.ballparkEndDate}"/>
+                </span>
+                <br>
+
+                <div th:if="${gameDetail.ballparkLeagueText}==null">
+                    <span>League: Not Available</span> <br>
+                </div>
+                <div th:if="${gameDetail.ballparkLeagueText}!=null">
+                    <span th:text="'League: ' + ${gameDetail.ballparkLeagueText}"/> <br>
+                </div>
+
+                <div th:if="${gameDetail.ballparkNotes}==''">
+                    <br>
+                </div>
+                <div th:if="${gameDetail.ballparkNotes}!=''">
+                    <span th:text="'Notes: ' + ${gameDetail.ballparkNotes}"/> <br>
+                </div>
+
+                <div th:if="${gameDetail.startTime} == ''">
+                    <span th:text="'Game Time - Not Available'"></span>
+                </div>
+                <div th:if="${gameDetail.startTime} != ''">
+                    <span th:text="'Game Time - ' + ${gameDetail.startTime}"></span>
+                </div>
+                <br>
+
+                <span th:if="${gameDetail.dhUsedFlag=='T'}">Designated Hitter Used - Yes <br><br></span>
+                <span th:unless="${gameDetail.dhUsedFlag=='T'}">Designated Hitter Used - No <br><br></span>
+
+                <span>Umpires - </span> <br>
+                <span th:text="'Home Plate: ' + ${gameDetail.umpireHomePlateLastName} + ', ' + ${gameDetail.umpireHomePlateFirstName} + '  /  Debut Date: ' + ${gameDetail.umpireHomePlateDebutDate}"/> <br>
+                <span th:text="'First Base: ' + ${gameDetail.umpireFirstBaseLastName} + ', ' + ${gameDetail.umpireFirstBaseFirstName} + '  /  Debut Date: ' + ${gameDetail.umpireFirstBaseDebutDate}"/> <br>
+                <span th:text="'Second Base: ' + ${gameDetail.umpireSecondBaseLastName} + ', ' + ${gameDetail.umpireSecondBaseFirstName} + '  /  Debut Date: ' + ${gameDetail.umpireSecondBaseDebutDate}"/> <br>
+                <span th:text="'Third Base: ' + ${gameDetail.umpireThirdBaseLastName} + ', ' + ${gameDetail.umpireThirdBaseFirstName} + '  /  Debut Date: ' + ${gameDetail.umpireThirdBaseDebutDate}"/> <br>
+                <span th:text="'Left Field: ' + ${gameDetail.umpireLeftFieldLastName} + ', ' + ${gameDetail.umpireLeftFieldFirstName} + '  /  Debut Date: ' + ${gameDetail.umpireLeftFieldDebutDate}"/> <br>
+                <span th:text="'Right Field: ' + ${gameDetail.umpireRightFieldLastName} + ', ' + ${gameDetail.umpireRightFieldFirstName} + '  /  Debut Date: ' + ${gameDetail.umpireRightFieldDebutDate}"/> <br>
 
                 <br>
 

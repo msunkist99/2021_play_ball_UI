@@ -1,5 +1,6 @@
 package org.launchcode.play_ball_UI.models.dataAccessObjects;
 
+import org.hibernate.query.criteria.internal.expression.function.SubstringFunction;
 import org.launchcode.play_ball_UI.models.GameDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -36,6 +37,8 @@ public class GameDetailDataAccessObject {
             gameDetail.setDayOfWeek(row[3].toString());
             gameDetail.setStartTime(row[4].toString());
 
+
+
             gameDetail.setDayNight((Character) row[5]);
             gameDetail.setDayNightText(LookupDataAccessObject.lookupData.get("day_night" + row[5].toString()));
 
@@ -63,11 +66,11 @@ public class GameDetailDataAccessObject {
             gameDetail.setBallparkEndDate(row[21].toString());
 
             try {
-                gameDetail.setBallparkLeague((Character) row[22]);
+                gameDetail.setBallparkLeague(row[22].toString());
                 gameDetail.setBallparkLeagueText(LookupDataAccessObject.lookupData.get("league" + row[22].toString()));
             }
             catch(Exception e) {
-                gameDetail.setBallparkLeague('\0');
+                gameDetail.setBallparkLeague(null);
                 gameDetail.setBallparkLeagueText(null);
             }
 
@@ -246,71 +249,125 @@ public class GameDetailDataAccessObject {
 
             gameDetail.setYear((Integer)row[97]);
 
-            if (row[36].toString().isEmpty() || row[36].toString() == null) {       // home plate umpire id
-                gameDetail.setUmpireHomePlateLastName(null);
-                gameDetail.setUmpireHomePlateFirstName(null);
-                gameDetail.setUmpireHomePlateDebutDate(null);
-            }
-            else {
+            try {
                 gameDetail.setUmpireHomePlateLastName(row[98].toString());
                 gameDetail.setUmpireHomePlateFirstName(row[99].toString());
                 gameDetail.setUmpireHomePlateDebutDate(row[100].toString());
             }
-
-            if (row[37].toString().isEmpty() || row[37].toString() == null) {       // first base umpire id
-                gameDetail.setUmpireFirstBaseLastName(null);
-                gameDetail.setUmpireFirstBaseFirstName(null);
-                gameDetail.setUmpireFirstBaseDebutDate(null);
+            catch (Exception e) {
+                gameDetail.setUmpireHomePlateLastName(null);
+                gameDetail.setUmpireHomePlateFirstName(null);
+                gameDetail.setUmpireHomePlateDebutDate(null);
             }
-            else {
+
+//            if (row[36].toString().isEmpty() || row[36].toString() == null) {       // home plate umpire id
+//                gameDetail.setUmpireHomePlateLastName(null);
+//                gameDetail.setUmpireHomePlateFirstName(null);
+//                gameDetail.setUmpireHomePlateDebutDate(null);
+//            }
+//            else {
+//                gameDetail.setUmpireHomePlateLastName(row[98].toString());
+//                gameDetail.setUmpireHomePlateFirstName(row[99].toString());
+//                gameDetail.setUmpireHomePlateDebutDate(row[100].toString());
+//            }
+
+            try{
                 gameDetail.setUmpireFirstBaseLastName(row[101].toString());
                 gameDetail.setUmpireFirstBaseFirstName(row[102].toString());
                 gameDetail.setUmpireFirstBaseDebutDate(row[103].toString());
             }
-
-            if (row[38].toString().isEmpty() || row[38].toString() == null) {       // second base umpire id
-                gameDetail.setUmpireSecondBaseLastName(null);
-                gameDetail.setUmpireSecondBaseFirstName(null);
-                gameDetail.setUmpireSecondBaseDebutDate(null);
+            catch (Exception e) {
+                gameDetail.setUmpireFirstBaseLastName(null);
+                gameDetail.setUmpireFirstBaseFirstName(null);
+                gameDetail.setUmpireFirstBaseDebutDate(null);
             }
-            else {
+
+            try {
                 gameDetail.setUmpireSecondBaseLastName(row[104].toString());
                 gameDetail.setUmpireSecondBaseFirstName(row[105].toString());
                 gameDetail.setUmpireSecondBaseDebutDate(row[106].toString());
             }
-
-            if (row[39].toString().isEmpty() || row[39].toString() == null) {       // third base umpire id
-                gameDetail.setUmpireThirdBaseLastName(null);
-                gameDetail.setUmpireThirdBaseLastName(null);
-                gameDetail.setUmpireThirdBaseDebutDate(null);
+            catch (Exception e) {
+                gameDetail.setUmpireSecondBaseLastName(null);
+                gameDetail.setUmpireSecondBaseFirstName(null);
+                gameDetail.setUmpireSecondBaseDebutDate(null);
             }
-            else {
+//            if (row[38].toString().isEmpty() || row[38].toString() == null) {       // second base umpire id
+//                gameDetail.setUmpireSecondBaseLastName(null);
+//                gameDetail.setUmpireSecondBaseFirstName(null);
+//                gameDetail.setUmpireSecondBaseDebutDate(null);
+//            }
+//            else {
+//                gameDetail.setUmpireSecondBaseLastName(row[104].toString());
+//                gameDetail.setUmpireSecondBaseFirstName(row[105].toString());
+//                gameDetail.setUmpireSecondBaseDebutDate(row[106].toString());
+//            }
+
+            try {
                 gameDetail.setUmpireThirdBaseLastName(row[107].toString());
                 gameDetail.setUmpireThirdBaseFirstName(row[108].toString());
                 gameDetail.setUmpireThirdBaseDebutDate(row[109].toString());
             }
-
-            if (row[40].toString().isEmpty() || row[40].toString() == null) {       // left field umpire id
-                gameDetail.setUmpireLeftFieldLastName(null);
-                gameDetail.setUmpireLeftFieldFirstName(null);
-                gameDetail.setUmpireLeftFieldDebutDate(null);
+            catch (Exception e) {
+                gameDetail.setUmpireThirdBaseLastName(null);
+                gameDetail.setUmpireThirdBaseLastName(null);
+                gameDetail.setUmpireThirdBaseDebutDate(null);
             }
-            else {
+
+//            if (row[39].toString().isEmpty() || row[39].toString() == null) {       // third base umpire id
+//                gameDetail.setUmpireThirdBaseLastName(null);
+//                gameDetail.setUmpireThirdBaseLastName(null);
+//                gameDetail.setUmpireThirdBaseDebutDate(null);
+//            }
+//            else {
+//                gameDetail.setUmpireThirdBaseLastName(row[107].toString());
+//                gameDetail.setUmpireThirdBaseFirstName(row[108].toString());
+//                gameDetail.setUmpireThirdBaseDebutDate(row[109].toString());
+//            }
+
+            try {
                 gameDetail.setUmpireLeftFieldLastName(row[110].toString());
                 gameDetail.setUmpireLeftFieldFirstName(row[111].toString());
                 gameDetail.setUmpireLeftFieldDebutDate(row[112].toString());
             }
-
-            if (row[41].toString().isEmpty() || row[41].toString() == null) {       // right field umpire id
-                gameDetail.setUmpireRightFieldLastName(null);
-                gameDetail.setUmpireRightFieldFirstName(null);
-                gameDetail.setUmpireRightFieldDebutDate(null);
+            catch (Exception e) {
+                gameDetail.setUmpireLeftFieldLastName(null);
+                gameDetail.setUmpireLeftFieldFirstName(null);
+                gameDetail.setUmpireLeftFieldDebutDate(null);
             }
-            else {
+
+//            if (row[40].toString().isEmpty() || row[40].toString() == null) {       // left field umpire id
+//                gameDetail.setUmpireLeftFieldLastName(null);
+//                gameDetail.setUmpireLeftFieldFirstName(null);
+//                gameDetail.setUmpireLeftFieldDebutDate(null);
+//            }
+//            else {
+//                gameDetail.setUmpireLeftFieldLastName(row[110].toString());
+//                gameDetail.setUmpireLeftFieldFirstName(row[111].toString());
+//                gameDetail.setUmpireLeftFieldDebutDate(row[112].toString());
+//            }
+
+            try {
                 gameDetail.setUmpireRightFieldLastName(row[113].toString());
                 gameDetail.setUmpireRightFieldFirstName(row[114].toString());
                 gameDetail.setUmpireRightFieldDebutDate(row[115].toString());
             }
+            catch (Exception e) {
+                gameDetail.setUmpireRightFieldLastName(null);
+                gameDetail.setUmpireRightFieldFirstName(null);
+                gameDetail.setUmpireRightFieldDebutDate(null);
+            }
+
+//            if (row[41].toString().isEmpty() || row[41].toString() == null) {       // right field umpire id
+//                gameDetail.setUmpireRightFieldLastName(null);
+//                gameDetail.setUmpireRightFieldFirstName(null);
+//                gameDetail.setUmpireRightFieldDebutDate(null);
+//            }
+//            else {
+//                gameDetail.setUmpireRightFieldLastName(row[113].toString());
+//                gameDetail.setUmpireRightFieldFirstName(row[114].toString());
+//                gameDetail.setUmpireRightFieldDebutDate(row[115].toString());
+//            }
 
 
             gameDetails.add(gameDetail);

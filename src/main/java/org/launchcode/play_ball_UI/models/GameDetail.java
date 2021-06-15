@@ -38,7 +38,7 @@ public class GameDetail {
         private String ballparkState;
         private String ballparkStartDate;
         private String ballparkEndDate;
-        private char ballparkLeague;
+        private String ballparkLeague;
         private String ballparkLeagueText;
         private String ballparkNotes;
 
@@ -431,11 +431,11 @@ public class GameDetail {
                 this.ballparkEndDate = ballparkEndDate;
         }
 
-        public char getBallparkLeague() {
+        public String getBallparkLeague() {
                 return ballparkLeague;
         }
 
-        public void setBallparkLeague(char ballparkLeague) {
+        public void setBallparkLeague(String ballparkLeague) {
                 this.ballparkLeague = ballparkLeague;
         }
 

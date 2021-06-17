@@ -35,9 +35,17 @@ public class GameDetailDataAccessObject {
 
 
             gameDetail.setDayOfWeek(row[3].toString());
-            gameDetail.setStartTime(row[4].toString());
+            //gameDetail.setStartTime(row[4].toString());
 
-
+            if (row[4].toString().length() == 3) {
+                gameDetail.setStartTime(row[4].toString().substring(0,1) + ":" + row[4].toString().substring(1,3));
+            }
+            else if (row[4].toString().length() == 4) {
+                gameDetail.setStartTime(row[4].toString().substring(0,2) + ":" + row[4].toString().substring(2,4));
+            }
+            else {
+                gameDetail.setStartTime(row[4].toString());
+            }
 
             gameDetail.setDayNight((Character) row[5]);
             gameDetail.setDayNightText(LookupDataAccessObject.lookupData.get("day_night" + row[5].toString()));
@@ -109,14 +117,49 @@ public class GameDetailDataAccessObject {
                 gameDetail.setPlayerPositionHomeStartingPitcher((Integer) row[35]);
                 gameDetail.setPlayerPositionHomeStartingPitcherText(LookupDataAccessObject.lookupData.get("field_position" + row[35].toString()));
             }
+            if (row[36].toString() == "(none)") {
+                gameDetail.setUmpireIdHomePlate("");
+            }
+            else {
+                gameDetail.setUmpireIdHomePlate(row[36].toString());
+            }
 
+            if (row[37].toString() == "(none)")
+            {
+                gameDetail.setUmpireIdFirstBase("");
+            }
+            else {
+                gameDetail.setUmpireIdFirstBase(row[37].toString());
+            }
 
-            gameDetail.setUmpireIdHomePlate(row[36].toString());
-            gameDetail.setUmpireIdFirstBase(row[37].toString());
-            gameDetail.setUmpireIdSecondBase(row[38].toString());
-            gameDetail.setUmpireIdThirdBase(row[39].toString());
-            gameDetail.setUmpireIdLeftField(row[40].toString());
-            gameDetail.setUmpireIdRightField(row[41].toString());
+            if (row[38].toString().equals("(none)")) {
+                gameDetail.setUmpireIdSecondBase("");
+            }
+            else {
+                gameDetail.setUmpireIdSecondBase(row[38].toString());
+            }
+
+            if (row[39].toString().equals("(none)")) {
+                gameDetail.setUmpireIdThirdBase("");
+            }
+            else {
+                gameDetail.setUmpireIdThirdBase(row[39].toString());
+            }
+
+            if (row[40].toString().equals("(none)")) {
+                gameDetail.setUmpireIdLeftField("");
+            }
+            else {
+                gameDetail.setUmpireIdLeftField(row[40].toString());
+            }
+
+            if (row[41].toString().equals("(none)")) {
+                gameDetail.setUmpireIdRightField("");
+            }
+            else {
+                gameDetail.setUmpireIdRightField(row[41].toString());
+            }
+
             gameDetail.setGameAttendance((Integer) row[42]);
             gameDetail.setPsScorer(row[43].toString());
             gameDetail.setTranslator(row[44].toString());

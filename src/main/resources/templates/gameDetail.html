@@ -54,11 +54,26 @@
                     <span th:text="'Winning Pitcher: ' + ${gameDetail.playerWinningPitcherLastName} + ', ' + ${gameDetail.playerWinningPitcherFirstName}"/> <br>
                     <span th:text="'Pitches: ' + ${gameDetail.playerWinningPitcherBatsText} + '  /  Bats: ' + ${gameDetail.playerWinningPitcherThrowsText}"/> <br><br>
 
-                    <span th:text="'Save for: ' + ${gameDetail.playerSaveForLastName} + ', ' + ${gameDetail.playerSaveForFirstName}"/> <br>
-                    <span th:text="'Pitches: ' + ${gameDetail.playerSaveForBatsText} + '  /  Bats: ' + ${gameDetail.playerSaveForThrowsText}"/> <br><br>
+                    <div th:if="${gameDetail.playerIdSaveFor} == null">
+                        <br>
+                        <br>
+                    </div>
+                    <div th:if="${gameDetail.playerIdSaveFor} != null">
+                        <span th:text="'Save: ' + ${gameDetail.playerSaveForLastName} + ', ' + ${gameDetail.playerSaveForFirstName}"/> <br>
+                        <span th:text="'Pitches: ' + ${gameDetail.playerSaveForBatsText} + '  /  Bats: ' + ${gameDetail.playerSaveForThrowsText}"/> <br>
 
-                    <span th:text="'Winning RBI: ' + ${gameDetail.playerWinningRbiLastName} + ', ' + ${gameDetail.playerWinningRbiFirstName}"/> <br>
-                    <span th:text="'Pitches: ' + ${gameDetail.playerWinningRbiBatsText} + '  /  Bats: ' + ${gameDetail.playerWinningRbiThrowsText}"/> <br><br>
+                    </div>
+                    <br>
+
+                    <div th:if="${setPlayerIdWinningRbi}==null">
+                        <br>
+                        <br>
+                    </div>
+                    <div th:if="${setPlayerIdWinningRbi}!=null">
+                        <span th:text="'Winning RBI: ' + ${gameDetail.playerWinningRbiLastName} + ', ' + ${gameDetail.playerWinningRbiFirstName}"/> <br>
+                        <span th:text="'Pitches: ' + ${gameDetail.playerWinningRbiBatsText} + '  /  Bats: ' + ${gameDetail.playerWinningRbiThrowsText}"/> <br><br>
+                    </div>
+                    <br>
                 </div>
 
                 <div th:if="${gameDetail.visitFinalScore} < ${gameDetail.homeFinalScore}">
@@ -99,11 +114,26 @@
                     <span th:text="'Winning Pitcher: ' + ${gameDetail.playerWinningPitcherLastName} + ', ' + ${gameDetail.playerWinningPitcherFirstName}"/> <br>
                     <span th:text="'Pitches: ' + ${gameDetail.playerWinningPitcherBatsText} + '  /  Bats: ' + ${gameDetail.playerWinningPitcherThrowsText}"/> <br><br>
 
-                    <span th:text="'Save for Pitcher: ' + ${gameDetail.playerSaveForLastName} + ', ' + ${gameDetail.playerSaveForFirstName}"/> <br>
-                    <span th:text="'Pitches: ' + ${gameDetail.playerSaveForBatsText} + '  /  Bats: ' + ${gameDetail.playerSaveForThrowsText}"/> <br><br>
+                    <div th:if="${gameDetail.playerIdSaveFor}==null">
+                        <br>
+                        <br>
+                    </div>
+                    <div th:if="${gameDetail.playerIdSaveFor}!=null">
+                        <span th:text="'Save: ' + ${gameDetail.playerSaveForLastName} + ', ' + ${gameDetail.playerSaveForFirstName}"/> <br>
+                        <span th:text="'Pitches: ' + ${gameDetail.playerSaveForBatsText} + '  /  Bats: ' + ${gameDetail.playerSaveForThrowsText}"/> <br>
 
-                    <span th:text="'Winning RBI: ' + ${gameDetail.playerWinningRbiLastName} + ', ' + ${gameDetail.playerWinningRbiFirstName}"/> <br>
-                    <span th:text="'Pitches: ' + ${gameDetail.playerWinningRbiBatsText} + '  /  Bats: ' + ${gameDetail.playerWinningRbiThrowsText}"/> <br><br>
+                    </div>
+                    <br>
+
+                    <div th:if="${setPlayerIdWinningRbi}==null">
+                        <br>
+                        <br>
+                    </div>
+                    <div th:if="${setPlayerIdWinningRbi}!=null">
+                        <span th:text="'Winning RBI: ' + ${gameDetail.playerWinningRbiLastName} + ', ' + ${gameDetail.playerWinningRbiFirstName}"/> <br>
+                        <span th:text="'Pitches: ' + ${gameDetail.playerWinningRbiBatsText} + '  /  Bats: ' + ${gameDetail.playerWinningRbiThrowsText}"/> <br><br>
+                    </div>
+                    <br>
                 </div>
 
                 <div th:if="${gameDetail.homeFinalScore} < ${gameDetail.visitFinalScore}">
@@ -231,6 +261,8 @@
                 <span th:text="'Field Condition: ' + ${gameDetail.gameFieldConditionText}"/> <br>
                 <span th:text="'Precipitation: ' + ${gameDetail.gamePrecipitationText}"/> <br>
                 <span th:text="'Sky:  ' + ${gameDetail.gameSkyText}"/> <br>
+                <br>
+
                 <span th:text="'PS Scorer: ' + ${gameDetail.psScorer}"/> <br>
                 <span th:text="'Translator: ' + ${gameDetail.translator}"/> <br>
                 <span th:text="'Inputter: ' + ${gameDetail.inputter}"/> <br>
